@@ -1,0 +1,237 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Dimensiones - Paciente P001</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Registro de Dimensiones - Paciente P001</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Panel izquierdo -->
+            <div class="bg-white rounded-lg shadow p-4">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Fecha:</label>
+                    <input type="date" id="currentDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Pensamientos registrados:</label>
+                    <select id="thoughtsList" size="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        {% for thought in pensamientos %}
+                            <option value="{{ thought['codigo'] }}">{{ thought['codigo'] }} - {{ thought['pensamiento'][:50] }}...</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button id="viewThought" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Ver pensamiento completo
+                </button>
+            </div>
+            
+            <!-- Panel derecho -->
+            <div class="bg-white rounded-lg shadow p-4">
+                <div id="dimensionsPanel" class="hidden">
+                    <h2 class="text-xl font-semibold mb-4">Dimensiones del pensamiento</h2>
+                    
+                    <!-- Cantidad -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700">Cantidad de veces:</label>
+                        <div class="flex items-center mt-2">
+                            <button id="decreaseQuantity" class="bg-gray-200 px-3 py-1 rounded-l">-</button>
+                            <span id="quantityValue" class="px-4 py-1 border-t border-b">0</span>
+                            <button id="increaseQuantity" class="bg-gray-200 px-3 py-1 rounded-r">+</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Duración -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700">Duración (0-60 min):</label>
+                        <input type="number" id="duration" min="0" max="60" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+                    
+                    <!-- Intensidad -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700">Intensidad (0-10):</label>
+                        <input type="range" id="intensity" min="0" max="10" class="mt-1 block w-full">
+                        <span id="intensityValue" class="text-sm text-gray-600">5</span>
+                    </div>
+                    
+                    <!-- Lista de dimensiones del día -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium mb-2">Dimensiones registradas hoy:</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duración</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Intensidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dimensionsList" class="bg-white divide-y divide-gray-200">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Totales -->
+                    <div class="mb-6">
+                        <p>Total de veces: <span id="totalTimes">0</span></p>
+                        <p>Total minutos: <span id="totalMinutes">0</span></p>
+                    </div>
+                    
+                    <button id="saveDimension" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                        Guardar Dimensión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver pensamiento completo -->
+    <div id="thoughtModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
+            <h2 class="text-xl font-bold mb-4">Detalle del Pensamiento</h2>
+            <p id="thoughtDetail" class="mb-4"></p>
+            <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Utility functions
+        const DateTime = luxon.DateTime;
+        
+        // Initialize current date
+        document.getElementById('currentDate').valueAsDate = new Date();
+        
+        // Initialize variables
+        let currentQuantity = 0;
+        
+        // Event listeners
+        document.getElementById('thoughtsList').addEventListener('change', handleThoughtSelection);
+        document.getElementById('decreaseQuantity').addEventListener('click', () => {
+            if (currentQuantity > 0) {
+                currentQuantity--;
+                document.getElementById('quantityValue').textContent = currentQuantity;
+            }
+        });
+        document.getElementById('increaseQuantity').addEventListener('click', () => {
+            currentQuantity++;
+            document.getElementById('quantityValue').textContent = currentQuantity;
+        });
+        
+        document.getElementById('intensity').addEventListener('input', (e) => {
+            document.getElementById('intensityValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('viewThought').addEventListener('click', showThoughtDetail);
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('thoughtModal').classList.add('hidden');
+        });
+        
+        document.getElementById('saveDimension').addEventListener('click', saveDimension);
+        document.getElementById('currentDate').addEventListener('change', () => {
+            const selectedThought = document.getElementById('thoughtsList').value;
+            if (selectedThought) {
+                loadDimensions(selectedThought);
+            }
+        });
+        
+        function handleThoughtSelection() {
+            const thoughtCode = document.getElementById('thoughtsList').value;
+            if (thoughtCode) {
+                document.getElementById('dimensionsPanel').classList.remove('hidden');
+                loadDimensions(thoughtCode);
+            } else {
+                document.getElementById('dimensionsPanel').classList.add('hidden');
+            }
+        }
+        
+        function showThoughtDetail() {
+            const select = document.getElementById('thoughtsList');
+            const selectedOption = select.options[select.selectedIndex];
+            if (selectedOption) {
+                document.getElementById('thoughtDetail').textContent = selectedOption.text;
+                document.getElementById('thoughtModal').classList.remove('hidden');
+            }
+        }
+        
+        async function loadDimensions(thoughtCode) {
+            const date = document.getElementById('currentDate').value;
+            try {
+                const response = await fetch(`/api/dimensions/${thoughtCode}/${date}`);
+                const data = await response.json();
+                
+                // Update dimensions list
+                const tbody = document.getElementById('dimensionsList');
+                tbody.innerHTML = '';
+                
+                data.dimensions.forEach(dim => {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = dim.cantidad;
+                    row.insertCell(1).textContent = dim.duracion || '-';
+                    row.insertCell(2).textContent = dim.intensidad;
+                });
+                
+                // Update totals
+                document.getElementById('totalTimes').textContent = data.totals.times;
+                document.getElementById('totalMinutes').textContent = data.totals.minutes;
+                
+            } catch (error) {
+                console.error('Error loading dimensions:', error);
+            }
+        }
+        
+        async function saveDimension() {
+            const thoughtCode = document.getElementById('thoughtsList').value;
+            if (!thoughtCode) return;
+            
+            const data = {
+                thoughtCode,
+                date: document.getElementById('currentDate').value,
+                quantity: currentQuantity,
+                duration: document.getElementById('duration').value || null,
+                intensity: parseInt(document.getElementById('intensity').value)
+            };
+            
+            try {
+                const response = await fetch('/api/dimensions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    // Reset form
+                    currentQuantity = 0;
+                    document.getElementById('quantityValue').textContent = '0';
+                    document.getElementById('duration').value = '';
+                    document.getElementById('intensity').value = '5';
+                    document.getElementById('intensityValue').textContent = '5';
+                    
+                    // Reload dimensions
+                    loadDimensions(thoughtCode);
+                    
+                    alert('Dimensión guardada correctamente');
+                } else {
+                    alert('Error al guardar la dimensión');
+                }
+            } catch (error) {
+                console.error('Error saving dimension:', error);
+                alert('Error al guardar la dimensión');
+            }
+        }
+    </script>
+</body>
+</html>
