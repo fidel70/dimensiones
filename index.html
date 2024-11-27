@@ -3,151 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Dimensiones - P001</title>
-    <script>
-        // supabaseClient.js
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://dszldxsmbcdntoxfemqt.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzemxkeHNtYmNkbnRveGZlbXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI2Mjc5MjUsImV4cCI6MjA0ODIwMzkyNX0.hyhet-K26S5SF12gptH7yeuOfYNnRux-CziIfwDeoDI'
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
-// Funciones de utilidad para interactuar con Supabase
-export const supabaseUtils = {
-  // Autenticación
-  async signIn({ email, password }) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    })
-    return { data, error }
-  },
-
-  async signOut() {
-    const { error } = await supabase.auth.signOut()
-    return { error }
-  },
-
-  // Operaciones con pacientes
-  async getPacientes() {
-    const { data, error } = await supabase
-      .from('pacientes')
-      .select('*')
-      .order('codigo')
-    return { data, error }
-  },
-
-  // Operaciones con pensamientos
-  async getPensamientosPorPaciente(codigoPaciente) {
-    const { data, error } = await supabase
-      .from('pensamientos')
-      .select('*')
-      .ilike('codigo', `${codigoPaciente}%`)
-      .order('codigo')
-    return { data, error }
-  },
-
-  // Operaciones con dimensiones
-  async getDimensiones(pensamientoId, fecha) {
-    const { data, error } = await supabase
-      .rpc('get_dimensiones_por_fecha_y_pensamiento', {
-        p_pensamiento_id: pensamientoId,
-        p_fecha: fecha
-      })
-    return { data, error }
-  },
-
-  async insertDimension(dimension) {
-    const { data, error } = await supabase
-      .from('dimensiones')
-      .insert([dimension])
-      .select()
-    return { data, error }
-  }
-}
-    </script>
+    <title>Registro de Dimensiones</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-4">Registro de Dimensiones - Paciente P001</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Panel Izquierdo -->
+            <!-- Panel de Pensamientos -->
             <div class="bg-white rounded-lg shadow p-4">
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700">Fecha:</label>
-                    <input type="date" id="currentDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <label class="block text-gray-700">Fecha:</label>
+                    <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700">Pensamientos registrados:</label>
-                    <div class="mt-2 space-y-2" id="thoughtsList">
-                        <!-- Los pensamientos se cargarán aquí -->
+                    <label class="block text-gray-700">Pensamientos registrados:</label>
+                    <div id="thoughtsList" class="mt-2 space-y-2">
+                        <!-- Los pensamientos se agregarán aquí dinámicamente -->
                     </div>
                 </div>
             </div>
 
-            <!-- Panel Derecho -->
+            <!-- Panel de Dimensiones -->
             <div class="bg-white rounded-lg shadow p-4">
-                <div id="dimensionsPanel" class="hidden">
+                <div id="dimensionsPanel">
                     <h2 class="text-xl font-semibold mb-4">Dimensiones del pensamiento</h2>
 
-                    <!-- Cantidad -->
                     <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700">Cantidad de veces:</label>
+                        <label class="block text-gray-700">Cantidad de veces:</label>
                         <div class="flex items-center mt-2">
-                            <button id="decreaseBtn" class="px-3 py-1 bg-gray-200 rounded-l">-</button>
+                            <button id="decreaseBtn" class="px-3 py-1 border rounded-l">-</button>
                             <span id="quantityValue" class="px-4 py-1 border-t border-b">0</span>
-                            <button id="increaseBtn" class="px-3 py-1 bg-gray-200 rounded-r">+</button>
+                            <button id="increaseBtn" class="px-3 py-1 border rounded-r">+</button>
                         </div>
                     </div>
 
-                    <!-- Duración -->
                     <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700">Duración (0-60 min):</label>
-                        <input type="number" id="durationInput" min="0" max="60" 
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        <label class="block text-gray-700">Duración (0-60 min):</label>
+                        <input type="number" min="0" max="60" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
-                    <!-- Intensidad -->
                     <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700">Intensidad (0-10):</label>
-                        <input type="range" id="intensityInput" min="0" max="10" value="5" 
-                               class="mt-1 block w-full">
+                        <label class="block text-gray-700">Intensidad (0-10):</label>
+                        <input type="range" min="0" max="10" value="5" class="mt-1 block w-full">
                         <span id="intensityValue" class="text-sm text-gray-600">5</span>
                     </div>
 
-                    <!-- Lista de dimensiones -->
                     <div class="mb-6">
                         <h3 class="text-lg font-medium mb-2">Dimensiones registradas hoy:</h3>
                         <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
+                            <table class="min-w-full">
+                                <thead>
                                     <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cantidad</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duración</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Intensidad</th>
+                                        <th class="px-4 py-2 text-left">Cantidad</th>
+                                        <th class="px-4 py-2 text-left">Duración</th>
+                                        <th class="px-4 py-2 text-left">Intensidad</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dimensionsList" class="bg-white divide-y divide-gray-200">
-                                    <!-- Las dimensiones se cargarán aquí -->
+                                <tbody id="dimensionsTable">
+                                    <!-- Las dimensiones se agregarán aquí dinámicamente -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- Totales -->
                     <div class="mb-6">
                         <p>Total de veces: <span id="totalTimes">0</span></p>
                         <p>Total minutos: <span id="totalMinutes">0</span></p>
                     </div>
 
-                    <button id="saveButton" 
-                            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <button id="saveButton" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         Guardar Dimensión
                     </button>
                 </div>
@@ -155,185 +82,45 @@ export const supabaseUtils = {
         </div>
     </div>
 
-    <!-- Modal para ver pensamiento completo -->
+    <!-- Modal de Pensamiento -->
     <div id="thoughtModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
             <h2 class="text-xl font-bold mb-4">Detalle del Pensamiento</h2>
-            <p id="thoughtDetail" class="mb-4"></p>
-            <button onclick="closeModal()" 
-                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            <button id="closeModal" class="mt-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
                 Cerrar
             </button>
         </div>
     </div>
 
     <script>
-        // Inicialización de Supabase
-        const supabase = supabase.createClient(
-            'https://dszldxsmbcdntoxfemqt.supabase.co',
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzemxkeHNtYmNkbnRveGZlbXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI2Mjc5MjUsImV4cCI6MjA0ODIwMzkyNX0.hyhet-K26S5SF12gptH7yeuOfYNnRux-CziIfwDeoDI'
-        );
-
-        // Variables globales
-        let selectedThoughtCode = null;
+        // Inicialización de variables
+        let quantity = 0;
+        const quantityValue = document.getElementById('quantityValue');
+        const intensityValue = document.getElementById('intensityValue');
+        const intensityInput = document.querySelector('input[type="range"]');
         
-        // Establecer fecha actual
-        document.getElementById('currentDate').valueAsDate = new Date();
-
-        // Event Listeners
-        document.getElementById('decreaseBtn').addEventListener('click', decreaseQuantity);
-        document.getElementById('increaseBtn').addEventListener('click', increaseQuantity);
-        document.getElementById('intensityInput').addEventListener('input', updateIntensityValue);
-        document.getElementById('saveButton').addEventListener('click', saveDimension);
-        document.getElementById('currentDate').addEventListener('change', () => {
-            if (selectedThoughtCode) {
-                loadDimensions(selectedThoughtCode);
+        // Manejadores de eventos para la cantidad
+        document.getElementById('decreaseBtn').addEventListener('click', () => {
+            if (quantity > 0) {
+                quantity--;
+                quantityValue.textContent = quantity;
             }
         });
 
-        // Cargar pensamientos al iniciar
-        loadThoughts();
+        document.getElementById('increaseBtn').addEventListener('click', () => {
+            quantity++;
+            quantityValue.textContent = quantity;
+        });
 
-        async function loadThoughts() {
-            try {
-                const { data: thoughts, error } = await supabase
-                    .from('pensamientos')
-                    .select('codigo, pensamiento')
-                    .ilike('codigo', 'P001%')
-                    .order('codigo');
+        // Manejador para la intensidad
+        intensityInput.addEventListener('input', (e) => {
+            intensityValue.textContent = e.target.value;
+        });
 
-                if (error) throw error;
-
-                const thoughtsList = document.getElementById('thoughtsList');
-                thoughtsList.innerHTML = thoughts.map(thought => `
-                    <div class="thought-item p-2 hover:bg-gray-100 rounded cursor-pointer flex justify-between"
-                         onclick="selectThought('${thought.codigo}', '${thought.pensamiento}')">
-                        <span>${thought.codigo} - ${thought.pensamiento.substring(0, 50)}...</span>
-                        <button onclick="showThoughtDetail('${thought.pensamiento}'); event.stopPropagation();"
-                                class="text-blue-500 hover:text-blue-700">
-                            Ver más
-                        </button>
-                    </div>
-                `).join('');
-            } catch (error) {
-                console.error('Error loading thoughts:', error);
-                alert('Error al cargar los pensamientos');
-            }
-        }
-
-        function selectThought(thoughtCode, thoughtText) {
-            selectedThoughtCode = thoughtCode;
-            document.getElementById('dimensionsPanel').classList.remove('hidden');
-            loadDimensions(thoughtCode);
-        }
-
-        async function loadDimensions(thoughtCode) {
-            try {
-                const currentDate = document.getElementById('currentDate').value;
-                const { data: dimensions, error } = await supabase
-                    .from('dimensiones')
-                    .select(`
-                        cantidad,
-                        duracion,
-                        intensidad
-                    `)
-                    .eq('pensamiento_id', thoughtCode)
-                    .eq('fecha', currentDate);
-
-                if (error) throw error;
-
-                updateDimensionsTable(dimensions);
-                updateTotals(dimensions);
-            } catch (error) {
-                console.error('Error loading dimensions:', error);
-                alert('Error al cargar las dimensiones');
-            }
-        }
-
-        function updateDimensionsTable(dimensions) {
-            const tbody = document.getElementById('dimensionsList');
-            tbody.innerHTML = dimensions.map(dim => `
-                <tr>
-                    <td class="px-6 py-4">${dim.cantidad}</td>
-                    <td class="px-6 py-4">${dim.duracion || '-'}</td>
-                    <td class="px-6 py-4">${dim.intensidad}</td>
-                </tr>
-            `).join('');
-        }
-
-        function updateTotals(dimensions) {
-            const totalTimes = dimensions.reduce((sum, dim) => sum + dim.cantidad, 0);
-            const totalMinutes = dimensions.reduce((sum, dim) => sum + (dim.duracion || 0), 0);
-            
-            document.getElementById('totalTimes').textContent = totalTimes;
-            document.getElementById('totalMinutes').textContent = totalMinutes;
-        }
-
-        function decreaseQuantity() {
-            const valueSpan = document.getElementById('quantityValue');
-            let value = parseInt(valueSpan.textContent);
-            if (value > 0) {
-                valueSpan.textContent = value - 1;
-            }
-        }
-
-        function increaseQuantity() {
-            const valueSpan = document.getElementById('quantityValue');
-            let value = parseInt(valueSpan.textContent);
-            valueSpan.textContent = value + 1;
-        }
-
-        function updateIntensityValue() {
-            const value = document.getElementById('intensityInput').value;
-            document.getElementById('intensityValue').textContent = value;
-        }
-
-        async function saveDimension() {
-            if (!selectedThoughtCode) {
-                alert('Por favor seleccione un pensamiento');
-                return;
-            }
-
-            const quantity = parseInt(document.getElementById('quantityValue').textContent);
-            const duration = document.getElementById('durationInput').value;
-            const intensity = parseInt(document.getElementById('intensityInput').value);
-            const currentDate = document.getElementById('currentDate').value;
-
-            try {
-                const { error } = await supabase
-                    .from('dimensiones')
-                    .insert([{
-                        pensamiento_id: selectedThoughtCode,
-                        fecha: currentDate,
-                        cantidad: quantity,
-                        duracion: duration || null,
-                        intensidad: intensity
-                    }]);
-
-                if (error) throw error;
-
-                alert('Dimensión guardada correctamente');
-                loadDimensions(selectedThoughtCode);
-                
-                // Resetear valores
-                document.getElementById('quantityValue').textContent = '0';
-                document.getElementById('durationInput').value = '';
-                document.getElementById('intensityInput').value = '5';
-                document.getElementById('intensityValue').textContent = '5';
-            } catch (error) {
-                console.error('Error saving dimension:', error);
-                alert('Error al guardar la dimensión');
-            }
-        }
-
-        function showThoughtDetail(thought) {
-            document.getElementById('thoughtDetail').textContent = thought;
-            document.getElementById('thoughtModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
+        // Manejador para el modal
+        document.getElementById('closeModal').addEventListener('click', () => {
             document.getElementById('thoughtModal').classList.add('hidden');
-        }
+        });
     </script>
 </body>
 </html>
