@@ -16,13 +16,13 @@
             <div class="bg-white rounded-lg shadow p-4">
                 <div class="mb-4">
                     <label class="block text-gray-700">Fecha:</label>
-                    <input type="date" id="dateInput" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <input type="date" id="dateInput" class="mt-1 block w-full rounded-md border p-2">
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700">Pensamientos registrados:</label>
+                    <label class="block text-gray-700 mb-2">Pensamientos registrados:</label>
                     <div id="thoughtsList" class="mt-2 space-y-2">
-                        <!-- Los pensamientos se agregarán aquí dinámicamente -->
+                        <!-- Los pensamientos se cargarán aquí -->
                     </div>
                 </div>
             </div>
@@ -33,49 +33,53 @@
                     <h2 class="text-xl font-semibold mb-4">Dimensiones del pensamiento</h2>
 
                     <div class="mb-6">
-                        <label class="block text-gray-700">Cantidad de veces:</label>
+                        <label class="block text-gray-700 mb-2">Cantidad de veces:</label>
                         <div class="flex items-center mt-2">
-                            <button id="decreaseBtn" class="px-3 py-1 border rounded-l">-</button>
+                            <button id="decreaseBtn" class="px-3 py-1 border rounded-l hover:bg-gray-100">-</button>
                             <span id="quantityValue" class="px-4 py-1 border-t border-b">0</span>
-                            <button id="increaseBtn" class="px-3 py-1 border rounded-r">+</button>
+                            <button id="increaseBtn" class="px-3 py-1 border rounded-r hover:bg-gray-100">+</button>
                         </div>
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-gray-700">Duración (0-60 min):</label>
-                        <input type="number" id="durationInput" min="0" max="60" value="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        <label class="block text-gray-700 mb-2">Duración (0-60 min):</label>
+                        <input type="number" id="durationInput" min="0" max="60" value="0" 
+                               class="mt-1 block w-full rounded-md border p-2">
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-gray-700">Intensidad (0-10):</label>
-                        <input type="range" id="intensityInput" min="0" max="10" value="5" class="mt-1 block w-full">
-                        <span id="intensityValue" class="text-sm text-gray-600">5</span>
+                        <label class="block text-gray-700 mb-2">
+                            Intensidad (0-10): <span id="intensityValue">5</span>
+                        </label>
+                        <input type="range" id="intensityInput" min="0" max="10" value="5" 
+                               class="mt-1 block w-full">
                     </div>
 
                     <div class="mb-6">
                         <h3 class="text-lg font-medium mb-2">Dimensiones registradas hoy:</h3>
                         <div class="overflow-x-auto">
-                            <table class="min-w-full">
-                                <thead>
+                            <table class="min-w-full border">
+                                <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="px-4 py-2 text-left">Cantidad</th>
-                                        <th class="px-4 py-2 text-left">Duración</th>
-                                        <th class="px-4 py-2 text-left">Intensidad</th>
+                                        <th class="px-4 py-2 text-left border">Cantidad</th>
+                                        <th class="px-4 py-2 text-left border">Duración</th>
+                                        <th class="px-4 py-2 text-left border">Intensidad</th>
                                     </tr>
                                 </thead>
                                 <tbody id="dimensionsTable">
-                                    <!-- Las dimensiones se agregarán aquí dinámicamente -->
+                                    <!-- Las dimensiones se cargarán aquí -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div class="mb-6">
-                        <p>Total de veces: <span id="totalTimes">0</span></p>
-                        <p>Total minutos: <span id="totalMinutes">0</span></p>
+                    <div class="mb-6 p-4 bg-gray-50 rounded">
+                        <p>Total de veces: <span id="totalTimes" class="font-medium">0</span></p>
+                        <p>Total minutos: <span id="totalMinutes" class="font-medium">0</span></p>
                     </div>
 
-                    <button id="saveButton" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <button id="saveButton" 
+                            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         Guardar Dimensión
                     </button>
                 </div>
@@ -87,7 +91,10 @@
     <div id="thoughtModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
             <h2 class="text-xl font-bold mb-4">Detalle del Pensamiento</h2>
-            <button id="closeModal" class="mt-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
+            <div id="thoughtDetail" class="mb-4">
+                <!-- Detalles del pensamiento se cargarán aquí -->
+            </div>
+            <button id="closeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
                 Cerrar
             </button>
         </div>
@@ -101,17 +108,25 @@
 
         // Variables globales
         let quantity = 0;
-        const quantityValue = document.getElementById('quantityValue');
-        const intensityValue = document.getElementById('intensityValue');
-        const intensityInput = document.getElementById('intensityInput');
-        const durationInput = document.getElementById('durationInput');
+        let selectedThoughtId = null;
+
+        // Elementos DOM
         const dateInput = document.getElementById('dateInput');
-        
-        // Establecer la fecha actual
+        const thoughtsList = document.getElementById('thoughtsList');
+        const quantityValue = document.getElementById('quantityValue');
+        const intensityInput = document.getElementById('intensityInput');
+        const intensityValue = document.getElementById('intensityValue');
+        const durationInput = document.getElementById('durationInput');
+        const dimensionsTable = document.getElementById('dimensionsTable');
+        const totalTimes = document.getElementById('totalTimes');
+        const totalMinutes = document.getElementById('totalMinutes');
+        const thoughtModal = document.getElementById('thoughtModal');
+        const thoughtDetail = document.getElementById('thoughtDetail');
+
+        // Establecer fecha actual
         dateInput.valueAsDate = new Date();
 
-
-                // Función para cargar pensamientos
+        // Cargar pensamientos
         async function loadThoughts() {
             try {
                 const { data, error } = await supabase
@@ -122,9 +137,9 @@
 
                 if (error) throw error;
 
-                const thoughtsList = document.getElementById('thoughtsList');
                 thoughtsList.innerHTML = data.map(thought => `
-                    <div class="p-3 bg-gray-50 rounded shadow-sm hover:bg-gray-100 cursor-pointer">
+                    <div class="p-3 bg-gray-50 rounded shadow-sm hover:bg-gray-100 cursor-pointer"
+                         data-thought-id="${thought.id}">
                         <div class="font-medium">${thought.contenido}</div>
                         <div class="text-sm text-gray-500">
                             ${new Date(thought.created_at).toLocaleDateString()}
@@ -132,55 +147,24 @@
                     </div>
                 `).join('');
 
-                // Agregar evento click a cada pensamiento
-                thoughtsList.querySelectorAll('div[class*="p-3"]').forEach((el, index) => {
-                    el.addEventListener('click', () => {
-                        showThoughtDetails(data[index]);
-                    });
+                // Agregar eventos click
+                thoughtsList.querySelectorAll('div[data-thought-id]').forEach(el => {
+                    el.addEventListener('click', () => showThoughtDetails(el.dataset.thoughtId));
                 });
             } catch (error) {
-                console.error('Error loading thoughts:', error);
-                document.getElementById('thoughtsList').innerHTML = 
-                    '<div class="text-red-500">Error al cargar los pensamientos</div>';
+                console.error('Error:', error);
+                thoughtsList.innerHTML = '<div class="text-red-500">Error al cargar pensamientos</div>';
             }
         }
 
-        // Función para mostrar detalles del pensamiento
-        function showThoughtDetails(thought) {
-            const modal = document.getElementById('thoughtModal');
-            const modalContent = modal.querySelector('.bg-white');
-            
-            modalContent.innerHTML = `
-                <h2 class="text-xl font-bold mb-4">Detalle del Pensamiento</h2>
-                <div class="mb-4">
-                    <p class="text-gray-700">${thought.contenido}</p>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Fecha: ${new Date(thought.created_at).toLocaleString()}
-                    </p>
-                </div>
-                <button id="closeModal" class="mt-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
-                    Cerrar
-                </button>
-            `;
-
-            modal.classList.remove('hidden');
-            
-            // Actualizar el manejador del botón cerrar
-            document.getElementById('closeModal').addEventListener('click', () => {
-                modal.classList.add('hidden');
-            });
-        }
-
-        // Cargar pensamientos al iniciar
-        loadThoughts();
-
-        // Cargar dimensiones al inicio
+        // Cargar dimensiones
         async function loadDimensions() {
             try {
                 const { data, error } = await supabase
                     .from('dimensiones')
                     .select('*')
                     .eq('patient_id', 'P001')
+                    .eq('thought_id', selectedThoughtId)
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
@@ -188,33 +172,57 @@
                 updateDimensionsTable(data);
                 updateTotals(data);
             } catch (error) {
-                console.error('Error loading dimensions:', error);
-                alert('Error al cargar las dimensiones');
+                console.error('Error:', error);
+                dimensionsTable.innerHTML = '<tr><td colspan="3" class="px-4 py-2 text-red-500">Error al cargar dimensiones</td></tr>';
+            }
+        }
+
+        // Mostrar detalles del pensamiento
+        async function showThoughtDetails(thoughtId) {
+            try {
+                const { data, error } = await supabase
+                    .from('pensamientos')
+                    .select('*')
+                    .eq('id', thoughtId)
+                    .single();
+
+                if (error) throw error;
+
+                selectedThoughtId = thoughtId;
+                thoughtDetail.innerHTML = `
+                    <p class="text-gray-700">${data.contenido}</p>
+                    <p class="text-sm text-gray-500 mt-2">
+                        Fecha: ${new Date(data.created_at).toLocaleString()}
+                    </p>
+                `;
+                thoughtModal.classList.remove('hidden');
+                loadDimensions();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al cargar detalles del pensamiento');
             }
         }
 
         // Actualizar tabla de dimensiones
         function updateDimensionsTable(dimensions) {
-            const tbody = document.getElementById('dimensionsTable');
-            tbody.innerHTML = dimensions.map(dim => `
-                <tr>
-                    <td class="px-4 py-2">${dim.quantity}</td>
-                    <td class="px-4 py-2">${dim.duration}</td>
-                    <td class="px-4 py-2">${dim.intensity}</td>
+            dimensionsTable.innerHTML = dimensions.map(dim => `
+                <tr class="border-t">
+                    <td class="px-4 py-2 border">${dim.quantity}</td>
+                    <td class="px-4 py-2 border">${dim.duration}</td>
+                    <td class="px-4 py-2 border">${dim.intensity}</td>
                 </tr>
             `).join('');
         }
 
         // Actualizar totales
         function updateTotals(dimensions) {
-            const totalTimes = dimensions.reduce((sum, dim) => sum + dim.quantity, 0);
-            const totalMinutes = dimensions.reduce((sum, dim) => sum + dim.duration, 0);
-            
-            document.getElementById('totalTimes').textContent = totalTimes;
-            document.getElementById('totalMinutes').textContent = totalMinutes;
+            const times = dimensions.reduce((sum, dim) => sum + dim.quantity, 0);
+            const minutes = dimensions.reduce((sum, dim) => sum + dim.duration, 0);
+            totalTimes.textContent = times;
+            totalMinutes.textContent = minutes;
         }
 
-        // Manejadores de eventos para la cantidad
+        // Event Listeners
         document.getElementById('decreaseBtn').addEventListener('click', () => {
             if (quantity > 0) {
                 quantity--;
@@ -227,18 +235,27 @@
             quantityValue.textContent = quantity;
         });
 
-        // Manejador para la intensidad
         intensityInput.addEventListener('input', (e) => {
             intensityValue.textContent = e.target.value;
         });
 
-        // Manejador para guardar dimensión
+        document.getElementById('closeModal').addEventListener('click', () => {
+            thoughtModal.classList.add('hidden');
+            selectedThoughtId = null;
+        });
+
         document.getElementById('saveButton').addEventListener('click', async () => {
+            if (!selectedThoughtId) {
+                alert('Por favor, seleccione un pensamiento primero');
+                return;
+            }
+
             try {
-                const { data, error } = await supabase
+                const { error } = await supabase
                     .from('dimensiones')
                     .insert([{
                         patient_id: 'P001',
+                        thought_id: selectedThoughtId,
                         quantity: quantity,
                         duration: parseInt(durationInput.value),
                         intensity: parseInt(intensityInput.value),
@@ -250,25 +267,20 @@
                 alert('Dimensión guardada correctamente');
                 loadDimensions();
                 
-                // Resetear formulario
+                // Reset form
                 quantity = 0;
                 quantityValue.textContent = '0';
                 durationInput.value = '0';
                 intensityInput.value = '5';
                 intensityValue.textContent = '5';
             } catch (error) {
-                console.error('Error saving dimension:', error);
+                console.error('Error:', error);
                 alert('Error al guardar la dimensión');
             }
         });
 
-        // Manejador para el modal
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('thoughtModal').classList.add('hidden');
-        });
-
-        // Cargar dimensiones al iniciar la página
-        loadDimensions();
+        // Cargar datos iniciales
+        loadThoughts();
     </script>
 </body>
 </html>
