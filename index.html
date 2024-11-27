@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Dimensiones</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
@@ -15,7 +16,7 @@
             <div class="bg-white rounded-lg shadow p-4">
                 <div class="mb-4">
                     <label class="block text-gray-700">Fecha:</label>
-                    <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <input type="date" id="dateInput" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
 
                 <div class="mb-4">
@@ -42,12 +43,12 @@
 
                     <div class="mb-6">
                         <label class="block text-gray-700">Duración (0-60 min):</label>
-                        <input type="number" min="0" max="60" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        <input type="number" id="durationInput" min="0" max="60" value="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <div class="mb-6">
                         <label class="block text-gray-700">Intensidad (0-10):</label>
-                        <input type="range" min="0" max="10" value="5" class="mt-1 block w-full">
+                        <input type="range" id="intensityInput" min="0" max="10" value="5" class="mt-1 block w-full">
                         <span id="intensityValue" class="text-sm text-gray-600">5</span>
                     </div>
 
@@ -93,12 +94,62 @@
     </div>
 
     <script>
-        // Inicialización de variables
+        // Configuración de Supabase
+        const SUPABASE_URL = 'https://dszldxsmbcdntoxfemqt.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzemxkeHNtYmNkbnRveGZlbXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI2Mjc5MjUsImV4cCI6MjA0ODIwMzkyNX0.hyhet-K26S5SF12gptH7yeuOfYNnRux-CziIfwDeoDI';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Variables globales
         let quantity = 0;
         const quantityValue = document.getElementById('quantityValue');
         const intensityValue = document.getElementById('intensityValue');
-        const intensityInput = document.querySelector('input[type="range"]');
+        const intensityInput = document.getElementById('intensityInput');
+        const durationInput = document.getElementById('durationInput');
+        const dateInput = document.getElementById('dateInput');
         
+        // Establecer la fecha actual
+        dateInput.valueAsDate = new Date();
+
+        // Cargar dimensiones al inicio
+        async function loadDimensions() {
+            try {
+                const { data, error } = await supabase
+                    .from('dimensiones')
+                    .select('*')
+                    .eq('patient_id', 'P001')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                updateDimensionsTable(data);
+                updateTotals(data);
+            } catch (error) {
+                console.error('Error loading dimensions:', error);
+                alert('Error al cargar las dimensiones');
+            }
+        }
+
+        // Actualizar tabla de dimensiones
+        function updateDimensionsTable(dimensions) {
+            const tbody = document.getElementById('dimensionsTable');
+            tbody.innerHTML = dimensions.map(dim => `
+                <tr>
+                    <td class="px-4 py-2">${dim.quantity}</td>
+                    <td class="px-4 py-2">${dim.duration}</td>
+                    <td class="px-4 py-2">${dim.intensity}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Actualizar totales
+        function updateTotals(dimensions) {
+            const totalTimes = dimensions.reduce((sum, dim) => sum + dim.quantity, 0);
+            const totalMinutes = dimensions.reduce((sum, dim) => sum + dim.duration, 0);
+            
+            document.getElementById('totalTimes').textContent = totalTimes;
+            document.getElementById('totalMinutes').textContent = totalMinutes;
+        }
+
         // Manejadores de eventos para la cantidad
         document.getElementById('decreaseBtn').addEventListener('click', () => {
             if (quantity > 0) {
@@ -117,10 +168,43 @@
             intensityValue.textContent = e.target.value;
         });
 
+        // Manejador para guardar dimensión
+        document.getElementById('saveButton').addEventListener('click', async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('dimensiones')
+                    .insert([{
+                        patient_id: 'P001',
+                        quantity: quantity,
+                        duration: parseInt(durationInput.value),
+                        intensity: parseInt(intensityInput.value),
+                        created_at: new Date().toISOString()
+                    }]);
+
+                if (error) throw error;
+
+                alert('Dimensión guardada correctamente');
+                loadDimensions();
+                
+                // Resetear formulario
+                quantity = 0;
+                quantityValue.textContent = '0';
+                durationInput.value = '0';
+                intensityInput.value = '5';
+                intensityValue.textContent = '5';
+            } catch (error) {
+                console.error('Error saving dimension:', error);
+                alert('Error al guardar la dimensión');
+            }
+        });
+
         // Manejador para el modal
         document.getElementById('closeModal').addEventListener('click', () => {
             document.getElementById('thoughtModal').classList.add('hidden');
         });
+
+        // Cargar dimensiones al iniciar la página
+        loadDimensions();
     </script>
 </body>
 </html>
