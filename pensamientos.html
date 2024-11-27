@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pensamientos del Paciente P001</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-6">Pensamientos del Paciente P001</h1>
+        
+        <!-- Formulario para agregar pensamientos -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Registrar Nuevo Pensamiento</h2>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Contenido del pensamiento:</label>
+                <textarea id="pensamientoInput" class="w-full p-2 border rounded-md" rows="3"></textarea>
+            </div>
+            <button id="guardarBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Guardar Pensamiento
+            </button>
+        </div>
+
+        <!-- Lista de pensamientos -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Pensamientos Registrados</h2>
+            <div id="listaPensamientos" class="space-y-4">
+                <!-- Los pensamientos se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de Supabase
+        const SUPABASE_URL = 'https://dszldxsmbcdntoxfemqt.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzemxkeHNtYmNkbnRveGZlbXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI2Mjc5MjUsImV4cCI6MjA0ODIwMzkyNX0.hyhet-K26S5SF12gptH7yeuOfYNnRux-CziIfwDeoDI';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Cargar pensamientos
+        async function cargarPensamientos() {
+            try {
+                const { data, error } = await supabase
+                    .from('pensamientos')
+                    .select('*')
+                    .eq('patient_id', 'P001')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                const listaPensamientos = document.getElementById('listaPensamientos');
+                listaPensamientos.innerHTML = data.map(pensamiento => `
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <div class="mb-2 text-gray-800">${pensamiento.contenido}</div>
+                        <div class="text-sm text-gray-500">
+                            Registrado: ${new Date(pensamiento.created_at).toLocaleString()}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('listaPensamientos').innerHTML = 
+                    '<div class="text-red-500 p-4">Error al cargar los pensamientos</div>';
+            }
+        }
+
+        // Guardar nuevo pensamiento
+        async function guardarPensamiento() {
+            const contenido = document.getElementById('pensamientoInput').value.trim();
+            
+            if (!contenido) {
+                alert('Por favor, ingresa el contenido del pensamiento');
+                return;
+            }
+
+            try {
+                const { error } = await supabase
+                    .from('pensamientos')
+                    .insert([{
+                        patient_id: 'P001',
+                        contenido: contenido,
+                    }]);
+
+                if (error) throw error;
+
+                // Limpiar el formulario y recargar la lista
+                document.getElementById('pensamientoInput').value = '';
+                alert('Pensamiento guardado correctamente');
+                cargarPensamientos();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al guardar el pensamiento');
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('guardarBtn').addEventListener('click', guardarPensamiento);
+
+        // Cargar pensamientos al iniciar
+        cargarPensamientos();
+    </script>
+</body>
+</html>
