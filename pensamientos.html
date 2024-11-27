@@ -44,7 +44,7 @@
                 const { data, error } = await supabase
                     .from('pensamientos')
                     .select('*')
-                    .eq('patient_id', 'P001')
+                    .eq('paciente_id', 'P001')
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
@@ -78,7 +78,7 @@
                 const { error } = await supabase
                     .from('pensamientos')
                     .insert([{
-                        patient_id: 'P001',
+                        paciente_id: 'P001',
                         contenido: contenido,
                     }]);
 
