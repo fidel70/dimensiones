@@ -110,6 +110,70 @@
         // Establecer la fecha actual
         dateInput.valueAsDate = new Date();
 
+
+                // Función para cargar pensamientos
+        async function loadThoughts() {
+            try {
+                const { data, error } = await supabase
+                    .from('pensamientos')
+                    .select('*')
+                    .eq('patient_id', 'P001')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                const thoughtsList = document.getElementById('thoughtsList');
+                thoughtsList.innerHTML = data.map(thought => `
+                    <div class="p-3 bg-gray-50 rounded shadow-sm hover:bg-gray-100 cursor-pointer">
+                        <div class="font-medium">${thought.contenido}</div>
+                        <div class="text-sm text-gray-500">
+                            ${new Date(thought.created_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                `).join('');
+
+                // Agregar evento click a cada pensamiento
+                thoughtsList.querySelectorAll('div[class*="p-3"]').forEach((el, index) => {
+                    el.addEventListener('click', () => {
+                        showThoughtDetails(data[index]);
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading thoughts:', error);
+                document.getElementById('thoughtsList').innerHTML = 
+                    '<div class="text-red-500">Error al cargar los pensamientos</div>';
+            }
+        }
+
+        // Función para mostrar detalles del pensamiento
+        function showThoughtDetails(thought) {
+            const modal = document.getElementById('thoughtModal');
+            const modalContent = modal.querySelector('.bg-white');
+            
+            modalContent.innerHTML = `
+                <h2 class="text-xl font-bold mb-4">Detalle del Pensamiento</h2>
+                <div class="mb-4">
+                    <p class="text-gray-700">${thought.contenido}</p>
+                    <p class="text-sm text-gray-500 mt-2">
+                        Fecha: ${new Date(thought.created_at).toLocaleString()}
+                    </p>
+                </div>
+                <button id="closeModal" class="mt-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
+                    Cerrar
+                </button>
+            `;
+
+            modal.classList.remove('hidden');
+            
+            // Actualizar el manejador del botón cerrar
+            document.getElementById('closeModal').addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+        }
+
+        // Cargar pensamientos al iniciar
+        loadThoughts();
+
         // Cargar dimensiones al inicio
         async function loadDimensions() {
             try {
