@@ -1,4 +1,4 @@
-/*'use client'*/
+'use client'
 import React, { useState, useEffect } from 'react'
 import { Trash2, Edit2, Plus, Save, X, Search } from 'lucide-react'
 import { Card, CardBody, Button, Input, Select, SelectItem, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react"
@@ -226,8 +226,5 @@ const RegistroPensamientos = () => {
   )
 }
 
-<<<<<<< HEAD
+
 export default RegistroPensamientos
-=======
-export default RegistroPensamientos
->>>>>>> 0cd4bf13cc3a69f65f60a634996dd77e1754f650
