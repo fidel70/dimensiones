@@ -26,10 +26,10 @@ var map = {
 		"vendor-chunks/framer-motion",
 		"vendor-chunks/@swc",
 		"vendor-chunks/@supabase",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
 		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
 		"vendor-chunks/date-fns",
 		"_ssr_src_app_pacientes_P001_RegistroDimensiones_tsx"
@@ -41,10 +41,10 @@ var map = {
 		"vendor-chunks/framer-motion",
 		"vendor-chunks/@swc",
 		"vendor-chunks/@supabase",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
 		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
 		"vendor-chunks/date-fns",
 		"_ssr_src_app_pacientes_P001_RegistroDimensiones_tsx"
@@ -56,10 +56,10 @@ var map = {
 		"vendor-chunks/framer-motion",
 		"vendor-chunks/@swc",
 		"vendor-chunks/@supabase",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
 		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
 		"_ssr_src_app_pacientes_P001_RegistroPensamientos_tsx"
 	],
@@ -70,10 +70,10 @@ var map = {
 		"vendor-chunks/framer-motion",
 		"vendor-chunks/@swc",
 		"vendor-chunks/@supabase",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
 		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
 		"_ssr_src_app_pacientes_P001_RegistroPensamientos_tsx"
 	],
@@ -82,64 +82,6 @@ var map = {
 	],
 	"./page.tsx": [
 		"(ssr)/./src/app/pacientes/P001/page.tsx"
-	],
-	"./registrodimensiones/RegistroDimensiones": [
-		"(ssr)/./src/app/pacientes/P001/registrodimensiones/RegistroDimensiones.tsx",
-		"vendor-chunks/@react-aria",
-		"vendor-chunks/@nextui-org",
-		"vendor-chunks/framer-motion",
-		"vendor-chunks/@swc",
-		"vendor-chunks/@supabase",
-		"vendor-chunks/@react-stately",
-		"vendor-chunks/tailwind-variants",
-		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
-		"vendor-chunks/clsx",
-		"vendor-chunks/date-fns",
-		"_ssr_src_app_pacientes_P001_registrodimensiones_RegistroDimensiones_tsx"
-	],
-	"./registrodimensiones/RegistroDimensiones.tsx": [
-		"(ssr)/./src/app/pacientes/P001/registrodimensiones/RegistroDimensiones.tsx",
-		"vendor-chunks/@react-aria",
-		"vendor-chunks/@nextui-org",
-		"vendor-chunks/framer-motion",
-		"vendor-chunks/@swc",
-		"vendor-chunks/@supabase",
-		"vendor-chunks/@react-stately",
-		"vendor-chunks/tailwind-variants",
-		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
-		"vendor-chunks/clsx",
-		"vendor-chunks/date-fns",
-		"_ssr_src_app_pacientes_P001_registrodimensiones_RegistroDimensiones_tsx"
-	],
-	"./registropensamientos/RegistroPensamientos": [
-		"(ssr)/./src/app/pacientes/P001/registropensamientos/RegistroPensamientos.tsx",
-		"vendor-chunks/@react-aria",
-		"vendor-chunks/@nextui-org",
-		"vendor-chunks/framer-motion",
-		"vendor-chunks/@swc",
-		"vendor-chunks/@supabase",
-		"vendor-chunks/@react-stately",
-		"vendor-chunks/tailwind-variants",
-		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
-		"vendor-chunks/clsx",
-		"_ssr_src_app_pacientes_P001_registropensamientos_RegistroPensamientos_tsx"
-	],
-	"./registropensamientos/RegistroPensamientos.tsx": [
-		"(ssr)/./src/app/pacientes/P001/registropensamientos/RegistroPensamientos.tsx",
-		"vendor-chunks/@react-aria",
-		"vendor-chunks/@nextui-org",
-		"vendor-chunks/framer-motion",
-		"vendor-chunks/@swc",
-		"vendor-chunks/@supabase",
-		"vendor-chunks/@react-stately",
-		"vendor-chunks/tailwind-variants",
-		"vendor-chunks/@internationalized",
-		"vendor-chunks/lucide-react",
-		"vendor-chunks/clsx",
-		"_ssr_src_app_pacientes_P001_registropensamientos_RegistroPensamientos_tsx"
 	]
 };
 function webpackAsyncContext(req) {

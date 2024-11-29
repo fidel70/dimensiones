@@ -36,22 +36,6 @@ var map = {
 	],
 	"./page.tsx": [
 		"(app-pages-browser)/./src/app/pacientes/P001/page.tsx"
-	],
-	"./registrodimensiones/RegistroDimensiones": [
-		"(app-pages-browser)/./src/app/pacientes/P001/registrodimensiones/RegistroDimensiones.tsx",
-		"_app-pages-browser_src_app_pacientes_P001_registrodimensiones_RegistroDimensiones_tsx"
-	],
-	"./registrodimensiones/RegistroDimensiones.tsx": [
-		"(app-pages-browser)/./src/app/pacientes/P001/registrodimensiones/RegistroDimensiones.tsx",
-		"_app-pages-browser_src_app_pacientes_P001_registrodimensiones_RegistroDimensiones_tsx"
-	],
-	"./registropensamientos/RegistroPensamientos": [
-		"(app-pages-browser)/./src/app/pacientes/P001/registropensamientos/RegistroPensamientos.tsx",
-		"_app-pages-browser_src_app_pacientes_P001_registropensamientos_RegistroPensamientos_tsx"
-	],
-	"./registropensamientos/RegistroPensamientos.tsx": [
-		"(app-pages-browser)/./src/app/pacientes/P001/registropensamientos/RegistroPensamientos.tsx",
-		"_app-pages-browser_src_app_pacientes_P001_registropensamientos_RegistroPensamientos_tsx"
 	]
 };
 function webpackAsyncContext(req) {
