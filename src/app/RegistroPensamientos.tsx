@@ -1,6 +1,11 @@
 'use client'
+<<<<<<< HEAD
 import React, { useState, useEffect, useCallback } from 'react'
 import { Trash2, Edit2, Plus, Save, Search } from 'lucide-react'
+=======
+import React, { useState, useEffect } from 'react'
+import { Trash2, Edit2, Plus, Save, X, Search } from 'lucide-react'
+>>>>>>> 4b58dbef3f4107952cf85d18eb66f380d8ae346c
 import { Card, CardBody, Button, Input, Select, SelectItem, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react"
 import { supabase } from '@/lib/supabase'
 

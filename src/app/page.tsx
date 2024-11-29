@@ -60,4 +60,8 @@ const MainPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default MainPage;
+=======
+export default MainPage;
+>>>>>>> 4b58dbef3f4107952cf85d18eb66f380d8ae346c
