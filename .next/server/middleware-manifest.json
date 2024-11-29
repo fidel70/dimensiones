@@ -1,7 +1,5 @@
 {
-  "sortedMiddleware": [
-    "/"
-  ],
+  "version": 3,
   "middleware": {
     "/": {
       "files": [
@@ -12,14 +10,23 @@
       "page": "/",
       "matchers": [
         {
-          "regexp": "^/.*$",
-          "originalSource": "/:path*"
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next\\/static|_next\\/image|favicon.ico).*))(\\.json)?[\\/#\\?]?$",
+          "originalSource": "/((?!_next/static|_next/image|favicon.ico).*)"
         }
       ],
       "wasm": [],
-      "assets": []
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "epX1ZJelTAPbKju11sSuT",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "8FviXaBcDM01amXdrdO45Y92rrV78K3GYmSrOk5Ewpc=",
+        "__NEXT_PREVIEW_MODE_ID": "c1e17eddad80f1266ae7032fb9d6a0ad",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "4f898c2044398d4626e68f5e9bfbfe5866fb016323ea85d503076bb193b809cb",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "0a382973a360c7c2c0f5739e89b7550f14a31ea95f0874b04ca7e16c2b2a06f4"
+      }
     }
   },
   "functions": {},
-  "version": 2
+  "sortedMiddleware": [
+    "/"
+  ]
 }

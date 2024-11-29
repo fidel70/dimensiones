@@ -1,5 +1,6 @@
-{
-  "rules": {
-    "react-hooks/exhaustive-deps": "off"
-  }
+module.exports = {
+  extends: [
+    'next/core-web-vitals'
+  ],
+  // Otras configuraciones aquí...
 }

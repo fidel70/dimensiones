@@ -3,10 +3,13 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 
-const MainPage = () => {
-  const [currentView, setCurrentView] = useState(null);
+// Define valid component names
+type ComponentName = 'RegistroPensamientos' | 'RegistroDimensiones';
 
-  const loadComponent = (component) => {
+const MainPage = () => {
+  const [currentView, setCurrentView] = useState<ComponentName | null>(null);
+
+  const loadComponent = (component: ComponentName) => {
     setCurrentView(component);
   };
 
@@ -60,8 +63,4 @@ const MainPage = () => {
   );
 };
 
-<<<<<<< HEAD
 export default MainPage;
-=======
-export default MainPage;
->>>>>>> 4b58dbef3f4107952cf85d18eb66f380d8ae346c
