@@ -226,4 +226,8 @@ const RegistroPensamientos = () => {
   )
 }
 
+<<<<<<< HEAD
 export default RegistroPensamientos
+=======
+export default RegistroPensamientos
+>>>>>>> 0cd4bf13cc3a69f65f60a634996dd77e1754f650
