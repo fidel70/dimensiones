@@ -1,11 +1,11 @@
-/*'use client'*/
-import React, { useState, useEffect } from 'react'
-import { Trash2, Edit2, Plus, Save, X, Search } from 'lucide-react'
+'use client'
+import React, { useState, useEffect, useCallback } from 'react'
+import { Trash2, Edit2, Plus, Save, Search } from 'lucide-react'
 import { Card, CardBody, Button, Input, Select, SelectItem, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react"
 import { supabase } from '@/lib/supabase'
 
 interface Patient {
-  id: string | number
+  id: number  // Cambiado a solo number
   codigo: string
   nombre: string
 }
@@ -27,20 +27,15 @@ const RegistroPensamientos = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [deleteModal, setDeleteModal] = useState(false)
 
-  useEffect(() => {
-    loadPatients()
+  const loadPatients = useCallback(async () => {
+    const { data } = await supabase
+      .from('pacientes')
+      .select('*')
+      .order('codigo')
+    if (data) setPatients(data)
   }, [])
 
-  useEffect(() => {
-    if (selectedPatient) loadThoughts()
-  }, [selectedPatient])
-
-  const loadPatients = async () => {
-    const { data } = await supabase.from('pacientes').select('*').order('codigo')
-    if (data) setPatients(data)
-  }
-
-  const loadThoughts = async () => {
+  const loadThoughts = useCallback(async () => {
     if (!selectedPatient) return
     const { data } = await supabase
       .from('pensamientos')
@@ -48,7 +43,7 @@ const RegistroPensamientos = () => {
       .eq('paciente_id', selectedPatient.id)
       .order('codigo')
     if (data) setThoughts(data)
-  }
+  }, [selectedPatient])
 
   const handleSave = async () => {
     if (!selectedPatient || !currentThought?.codigo || !currentThought?.pensamiento) return
@@ -86,10 +81,20 @@ const RegistroPensamientos = () => {
     loadThoughts()
   }
 
+  useEffect(() => {
+    loadPatients()
+  }, [loadPatients])
+
+  useEffect(() => {
+    if (selectedPatient) loadThoughts()
+  }, [selectedPatient, loadThoughts])
+
   const filteredThoughts = thoughts.filter(t => 
     t.codigo.toLowerCase().includes(searchQuery.toLowerCase()) ||
     t.pensamiento.toLowerCase().includes(searchQuery.toLowerCase())
   )
+
+  // El resto del código del return se mantiene igual...
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4">
@@ -226,8 +231,5 @@ const RegistroPensamientos = () => {
   )
 }
 
-<<<<<<< HEAD
+
 export default RegistroPensamientos
-=======
-export default RegistroPensamientos
->>>>>>> 0cd4bf13cc3a69f65f60a634996dd77e1754f650

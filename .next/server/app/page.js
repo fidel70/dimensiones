@@ -22,69 +22,80 @@ var map = {
 	"./RegistroDimensiones": [
 		"(ssr)/./src/app/RegistroDimensiones.tsx",
 		"vendor-chunks/@react-aria",
-		"vendor-chunks/@supabase",
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/@swc",
+		"vendor-chunks/@supabase",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
-		"vendor-chunks/date-fns",
 		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
 		"_ssr_src_app_RegistroDimensiones_tsx"
 	],
 	"./RegistroDimensiones.tsx": [
 		"(ssr)/./src/app/RegistroDimensiones.tsx",
 		"vendor-chunks/@react-aria",
-		"vendor-chunks/@supabase",
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/@swc",
+		"vendor-chunks/@supabase",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
-		"vendor-chunks/date-fns",
 		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
 		"_ssr_src_app_RegistroDimensiones_tsx"
 	],
 	"./RegistroPensamientos": [
 		"(ssr)/./src/app/RegistroPensamientos.tsx",
 		"vendor-chunks/@react-aria",
-		"vendor-chunks/@supabase",
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/@swc",
+		"vendor-chunks/@supabase",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
 		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
 		"_ssr_src_app_RegistroPensamientos_tsx"
 	],
 	"./RegistroPensamientos.tsx": [
 		"(ssr)/./src/app/RegistroPensamientos.tsx",
 		"vendor-chunks/@react-aria",
-		"vendor-chunks/@supabase",
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/lucide-react",
 		"vendor-chunks/@swc",
+		"vendor-chunks/@supabase",
 		"vendor-chunks/@react-stately",
 		"vendor-chunks/tailwind-variants",
 		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
 		"vendor-chunks/clsx",
 		"_ssr_src_app_RegistroPensamientos_tsx"
 	],
 	"./globals.css": [
-		"(ssr)/./src/app/globals.css"
+		"(ssr)/./src/app/globals.css",
+		"_ssr_src_app_globals_css"
 	],
 	"./layout": [
-		"(ssr)/./src/app/layout.tsx"
+		"(ssr)/./src/app/layout.tsx",
+		"_ssr_src_app_layout_tsx"
 	],
 	"./layout.tsx": [
-		"(ssr)/./src/app/layout.tsx"
+		"(ssr)/./src/app/layout.tsx",
+		"_ssr_src_app_layout_tsx"
+	],
+	"./metadat": [
+		"(ssr)/./src/app/metadat.ts",
+		"_ssr_src_app_metadat_ts"
+	],
+	"./metadat.ts": [
+		"(ssr)/./src/app/metadat.ts",
+		"_ssr_src_app_metadat_ts"
 	],
 	"./page": [
 		"(ssr)/./src/app/page.tsx"
@@ -92,26 +103,18 @@ var map = {
 	"./page.tsx": [
 		"(ssr)/./src/app/page.tsx"
 	],
-	"./pageback": [
-		"(ssr)/./src/app/pageback.tsx",
-		"vendor-chunks/@supabase",
-		"vendor-chunks/lucide-react",
-		"vendor-chunks/date-fns",
-		"_ssr_src_app_pageback_tsx"
-	],
-	"./pageback.tsx": [
-		"(ssr)/./src/app/pageback.tsx",
-		"vendor-chunks/@supabase",
-		"vendor-chunks/lucide-react",
-		"vendor-chunks/date-fns",
-		"_ssr_src_app_pageback_tsx"
-	],
 	"./provider": [
 		"(ssr)/./src/app/provider.tsx",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
 		"_ssr_src_app_provider_tsx"
 	],
 	"./provider.tsx": [
 		"(ssr)/./src/app/provider.tsx",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
 		"_ssr_src_app_provider_tsx"
 	],
 	"./styles.css": [
@@ -358,13 +361,13 @@ eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__w
 
 /***/ }),
 
-/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp%5Clayout.tsx&server=true!":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp%5Clayout.tsx&server=true! ***!
-  \**************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp%5Cglobals.css&server=true!":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp%5Cglobals.css&server=true! ***!
+  \***************************************************************************************************************************************************************************************/
+/***/ (() => {
 
-eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/app/layout.tsx */ \"(ssr)/./src/app/layout.tsx\"))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9QyUzQSU1Q1VzZXJzJTVDZmlkZWwlNUNhcHBkaW1lbnNpb25lc3BhY2llbnRlcyU1Q3NyYyU1Q2FwcCU1Q2xheW91dC50c3gmc2VydmVyPXRydWUhIiwibWFwcGluZ3MiOiJBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWFwcC8/NWFmNyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIkM6XFxcXFVzZXJzXFxcXGZpZGVsXFxcXGFwcGRpbWVuc2lvbmVzcGFjaWVudGVzXFxcXHNyY1xcXFxhcHBcXFxcbGF5b3V0LnRzeFwiKSJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp%5Clayout.tsx&server=true!\n");
+
 
 /***/ }),
 
@@ -375,17 +378,6 @@ eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__web
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/app/page.tsx */ \"(ssr)/./src/app/page.tsx\"))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9QyUzQSU1Q1VzZXJzJTVDZmlkZWwlNUNhcHBkaW1lbnNpb25lc3BhY2llbnRlcyU1Q3NyYyU1Q2FwcCU1Q3BhZ2UudHN4JnNlcnZlcj10cnVlISIsIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovL25leHRqcy1hcHAvPzVmNzIiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCJDOlxcXFxVc2Vyc1xcXFxmaWRlbFxcXFxhcHBkaW1lbnNpb25lc3BhY2llbnRlc1xcXFxzcmNcXFxcYXBwXFxcXHBhZ2UudHN4XCIpIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp%5Cpage.tsx&server=true!\n");
-
-/***/ }),
-
-/***/ "(ssr)/./src/app/layout.tsx":
-/*!****************************!*\
-  !*** ./src/app/layout.tsx ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ RootLayout)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _globals_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./globals.css */ \"(ssr)/./src/app/globals.css\");\n/* harmony import */ var _nextui_org_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nextui-org/react */ \"(ssr)/./node_modules/@nextui-org/system/dist/chunk-PYQ4KYZP.mjs\");\n/* __next_internal_client_entry_do_not_use__ default auto */ \n\n\nfunction RootLayout({ children }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"html\", {\n        lang: \"en\",\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"body\", {\n            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_nextui_org_react__WEBPACK_IMPORTED_MODULE_2__.NextUIProvider, {\n                children: children\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\fidel\\\\appdimensionespacientes\\\\src\\\\app\\\\layout.tsx\",\n                lineNumber: 14,\n                columnNumber: 9\n            }, this)\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\fidel\\\\appdimensionespacientes\\\\src\\\\app\\\\layout.tsx\",\n            lineNumber: 13,\n            columnNumber: 7\n        }, this)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\fidel\\\\appdimensionespacientes\\\\src\\\\app\\\\layout.tsx\",\n        lineNumber: 12,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvYXBwL2xheW91dC50c3giLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBQ3NCO0FBRTRCO0FBRW5DLFNBQVNDLFdBQVcsRUFDakNDLFFBQVEsRUFHVDtJQUNDLHFCQUNFLDhEQUFDQztRQUFLQyxNQUFLO2tCQUNULDRFQUFDQztzQkFDQyw0RUFBQ0wsNkRBQWNBOzBCQUNaRTs7Ozs7Ozs7Ozs7Ozs7OztBQUtYIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWFwcC8uL3NyYy9hcHAvbGF5b3V0LnRzeD81N2E5Il0sInNvdXJjZXNDb250ZW50IjpbIid1c2UgY2xpZW50J1xuaW1wb3J0ICcuL2dsb2JhbHMuY3NzJ1xuXG5pbXBvcnQgeyBOZXh0VUlQcm92aWRlciB9IGZyb20gXCJAbmV4dHVpLW9yZy9yZWFjdFwiXG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFJvb3RMYXlvdXQoe1xuICBjaGlsZHJlbixcbn06IHtcbiAgY2hpbGRyZW46IFJlYWN0LlJlYWN0Tm9kZVxufSkge1xuICByZXR1cm4gKFxuICAgIDxodG1sIGxhbmc9XCJlblwiPlxuICAgICAgPGJvZHk+XG4gICAgICAgIDxOZXh0VUlQcm92aWRlcj5cbiAgICAgICAgICB7Y2hpbGRyZW59XG4gICAgICAgIDwvTmV4dFVJUHJvdmlkZXI+XG4gICAgICA8L2JvZHk+XG4gICAgPC9odG1sPlxuICApXG59XG5cbiJdLCJuYW1lcyI6WyJOZXh0VUlQcm92aWRlciIsIlJvb3RMYXlvdXQiLCJjaGlsZHJlbiIsImh0bWwiLCJsYW5nIiwiYm9keSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/app/layout.tsx\n");
 
 /***/ }),
 
@@ -400,14 +392,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "(ssr)/./src/app/globals.css":
+/***/ "(rsc)/./src/app/globals.css":
 /*!*****************************!*\
   !*** ./src/app/globals.css ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"ac4c33d8f4b7\");\nif (false) {}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvYXBwL2dsb2JhbHMuY3NzIiwibWFwcGluZ3MiOiI7Ozs7QUFBQSxpRUFBZSxjQUFjO0FBQzdCLElBQUksS0FBVSxFQUFFLEVBQXVCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWFwcC8uL3NyYy9hcHAvZ2xvYmFscy5jc3M/ZGQ1NCJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcImFjNGMzM2Q4ZjRiN1wiXG5pZiAobW9kdWxlLmhvdCkgeyBtb2R1bGUuaG90LmFjY2VwdCgpIH1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/app/globals.css\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"ac4c33d8f4b7\");\nif (false) {}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9zcmMvYXBwL2dsb2JhbHMuY3NzIiwibWFwcGluZ3MiOiI7Ozs7QUFBQSxpRUFBZSxjQUFjO0FBQzdCLElBQUksS0FBVSxFQUFFLEVBQXVCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWFwcC8uL3NyYy9hcHAvZ2xvYmFscy5jc3M/ZGY1OSJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcImFjNGMzM2Q4ZjRiN1wiXG5pZiAobW9kdWxlLmhvdCkgeyBtb2R1bGUuaG90LmFjY2VwdCgpIH1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(rsc)/./src/app/globals.css\n");
 
 /***/ }),
 
@@ -418,25 +410,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   $$typeof: () => (/* binding */ $$typeof),
-/* harmony export */   __esModule: () => (/* binding */ __esModule),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-
-const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\fidel\appdimensionespacientes\src\app\layout.tsx`)
-
-// Accessing the __esModule property and exporting $$typeof are required here.
-// The __esModule getter forces the proxy target to create the default export
-// and the $$typeof value is for rendering logic to determine if the module
-// is a client boundary.
-const { __esModule, $$typeof } = proxy;
-const __default__ = proxy.default;
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__default__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ RootLayout)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(rsc)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _globals_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./globals.css */ \"(rsc)/./src/app/globals.css\");\n\n\nfunction RootLayout({ children }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"html\", {\n        lang: \"es\",\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"body\", {\n            children: children\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\fidel\\\\appdimensionespacientes\\\\src\\\\app\\\\layout.tsx\",\n            lineNumber: 11,\n            columnNumber: 7\n        }, this)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\fidel\\\\appdimensionespacientes\\\\src\\\\app\\\\layout.tsx\",\n        lineNumber: 10,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9zcmMvYXBwL2xheW91dC50c3giLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFDc0I7QUFFUCxTQUFTQSxXQUFXLEVBQ2pDQyxRQUFRLEVBR1Q7SUFDQyxxQkFDRSw4REFBQ0M7UUFBS0MsTUFBSztrQkFDVCw0RUFBQ0M7c0JBRUlIOzs7Ozs7Ozs7OztBQUtYIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dGpzLWFwcC8uL3NyYy9hcHAvbGF5b3V0LnRzeD81N2E5Il0sInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0ICcuL2dsb2JhbHMuY3NzJ1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBSb290TGF5b3V0KHtcbiAgY2hpbGRyZW4sXG59OiB7XG4gIGNoaWxkcmVuOiBSZWFjdC5SZWFjdE5vZGU7XG59KSB7XG4gIHJldHVybiAoXG4gICAgPGh0bWwgbGFuZz1cImVzXCI+XG4gICAgICA8Ym9keT5cbiAgICAgICAgXG4gICAgICAgICAge2NoaWxkcmVufVxuICAgICAgICBcbiAgICAgIDwvYm9keT5cbiAgICA8L2h0bWw+XG4gICk7XG59Il0sIm5hbWVzIjpbIlJvb3RMYXlvdXQiLCJjaGlsZHJlbiIsImh0bWwiLCJsYW5nIiwiYm9keSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(rsc)/./src/app/layout.tsx\n");
 
 /***/ }),
 
@@ -476,7 +450,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/@react-aria","vendor-chunks/@nextui-org","vendor-chunks/framer-motion","vendor-chunks/@swc","vendor-chunks/next"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fpage&page=%2Fpage&appPaths=%2Fpage&pagePath=private-next-app-dir%2Fpage.tsx&appDir=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/@swc","vendor-chunks/next"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fpage&page=%2Fpage&appPaths=%2Fpage&pagePath=private-next-app-dir%2Fpage.tsx&appDir=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cfidel%5Cappdimensionespacientes&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();

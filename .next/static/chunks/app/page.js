@@ -43,19 +43,19 @@ var map = {
 		"(app-pages-browser)/./src/app/layout.tsx",
 		"_app-pages-browser_src_app_layout_tsx"
 	],
+	"./metadat": [
+		"(app-pages-browser)/./src/app/metadat.ts",
+		"_app-pages-browser_src_app_metadat_ts"
+	],
+	"./metadat.ts": [
+		"(app-pages-browser)/./src/app/metadat.ts",
+		"_app-pages-browser_src_app_metadat_ts"
+	],
 	"./page": [
 		"(app-pages-browser)/./src/app/page.tsx"
 	],
 	"./page.tsx": [
 		"(app-pages-browser)/./src/app/page.tsx"
-	],
-	"./pageback": [
-		"(app-pages-browser)/./src/app/pageback.tsx",
-		"_app-pages-browser_src_app_pageback_tsx"
-	],
-	"./pageback.tsx": [
-		"(app-pages-browser)/./src/app/pageback.tsx",
-		"_app-pages-browser_src_app_pageback_tsx"
 	],
 	"./provider": [
 		"(app-pages-browser)/./src/app/provider.tsx",

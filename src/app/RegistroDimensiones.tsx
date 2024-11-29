@@ -1,6 +1,6 @@
 'use client'
-
-import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabase'
+import { useState, useEffect, useCallback } from 'react'
 import { format } from 'date-fns'
 import { ChevronUp, ChevronDown, Calendar, Activity, Brain, Users } from 'lucide-react'
 import {
@@ -20,9 +20,9 @@ import {
   Divider,
   Slider
 } from "@nextui-org/react"
-import { supabase } from '@/lib/supabase'
+
 interface Patient {
-  id: string | number
+  id: number  // Cambiado a solo number
   codigo: string
   nombre: string
 }
@@ -57,66 +57,58 @@ const RegistroDimensiones = () => {
   const [dimensiones, setDimensiones] = useState<Dimension[]>([])
   const [showMessage, setShowMessage] = useState(false);
 
-  const loadPatients = async () => {
-    setIsLoading(true)
-    try {
-      const { data, error } = await supabase
-        .from('pacientes')
-        .select('*')
-        .order('codigo')
-      
-      if (error) {
-        console.error('Error cargando pacientes:', error)
-        return
-      }
-      
-      if (data) {
-        setPatients(data)
-      }
-    } catch (error) {
-      console.error('Error en loadPatients:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const loadPensamientos = async () => {
-    if (!selectedPatient) return
+   const loadPatients = useCallback(async () => {
     const { data } = await supabase
-      .from('pensamientos')
+      .from('pacientes')
       .select('*')
-      .eq('paciente_id', selectedPatient.id)
       .order('codigo')
-    if (data) {
-      setPensamientos(data)
-      setSelectedIndex(0)
-      setSelectedPensamiento(data[0] || null)
-    }
-  }
-
-  const loadDimensiones = async () => {
-  if (!selectedPensamiento) return
-  const today = new Date().toISOString().split('T')[0]
-  const [{ data: dimensiones }, { data: totalData }] = await Promise.all([
-    supabase.from('dimensiones').select('*').eq('pensamiento_id', selectedPensamiento.id).eq('fecha', today).order('created_at', { ascending: false }),
-    supabase.rpc('sum_cantidad', { pensamiento_id: selectedPensamiento.id, fecha: today })
-  ])
-  
-  if (dimensiones) setDimensiones(dimensiones)
-  if (totalData !== null) setTotalCantidad(totalData)
-}
-  
-  useEffect(() => {
-    loadPatients()
+    if (data) setPatients(data)
   }, [])
 
-  useEffect(() => {
-    if (selectedPatient) loadPensamientos()
-  }, [selectedPatient])
 
-  useEffect(() => {
-    if (selectedPensamiento) loadDimensiones()
-  }, [selectedPensamiento])
+  const loadPensamientos = useCallback(async () => {
+  if (!selectedPatient) return
+  const { data } = await supabase
+    .from('pensamientos')
+    .select('*')
+    .eq('paciente_id', selectedPatient.id)
+    .order('codigo')
+  if (data) {
+    setPensamientos(data)
+    setSelectedIndex(0)
+    setSelectedPensamiento(data[0] || null)
+  }
+}, [selectedPatient])
+
+ const loadDimensiones = useCallback(async () => {
+    if (!selectedPensamiento) return;
+    const today = new Date().toISOString().split('T')[0];
+    
+    const [{ data: dimensiones }, { data: totalData }] = await Promise.all([
+      supabase
+        .from('dimensiones')
+        .select('*')
+        .eq('pensamiento_id', selectedPensamiento.id)
+        .eq('fecha', today),
+      supabase
+        .rpc('sum_cantidad', { pensamiento_id: selectedPensamiento.id, fecha: today })
+    ]);
+
+    if (dimensiones) setDimensiones(dimensiones);
+    if (totalData !== null) setTotalCantidad(totalData);
+  }, [selectedPensamiento]);
+
+useEffect(() => {
+  loadPatients()
+}, [loadPatients])
+
+useEffect(() => {
+  loadPensamientos();
+}, [loadPensamientos, selectedPatient]);
+
+useEffect(() => {
+  loadDimensiones()
+}, [selectedPensamiento, loadDimensiones])
 
  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -161,19 +153,19 @@ const RegistroDimensiones = () => {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-3">
                 <Users className="w-6 h-6 text-primary" />
-                <Select
+              <Select
                   label="Seleccionar Paciente"
-                  placeholder={isLoading ? "Cargando pacientes..." : "Seleccione un paciente"}
-                  labelPlacement="outside"
-                  className="max-w-xs"
-                  value={selectedPatient?.id?.toString()}
+                  placeholder="Seleccione un paciente"
+                  className="w-full md:w-80"
+                  selectedKeys={selectedPatient ? [selectedPatient.id.toString()] : []}
                   onChange={(e) => {
-                    const patient = patients.find(p => p.id?.toString() === e.target.value)
-                    setSelectedPatient(patient || null)
+                    const selectedId = e.target.value;
+                    const patient = patients.find(p => p.id.toString() === selectedId);
+                    setSelectedPatient(patient || null);
                   }}
                 >
                   {patients.map((patient) => (
-                    <SelectItem key={patient.id} value={patient.id}>
+                    <SelectItem key={patient.id} value={patient.id.toString()}>
                       {patient.codigo} - {patient.nombre}
                     </SelectItem>
                   ))}
