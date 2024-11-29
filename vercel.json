@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": {
+        "Basic-Auth": "Basic ${process.env.AUTH_HEADER}"
+      }
+    }
+  ]
+}
