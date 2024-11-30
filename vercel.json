@@ -1,8 +1,10 @@
 {
+  "version": 2,
   "routes": [
     {
       "src": "/(.*)",
       "headers": {
+        "WWW-Authenticate": "Basic realm=\"Secure Area\"",
         "Basic-Auth": "Basic ${process.env.AUTH_HEADER}"
       }
     }
