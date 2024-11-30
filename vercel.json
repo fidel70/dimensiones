@@ -3,13 +3,9 @@
   "routes": [
     {
       "src": "/(.*)",
-      "continue": true,
       "headers": {
-        "WWW-Authenticate": "Basic realm=\"Secure Area\"",
-        "Access-Control-Allow-Origin": "*"
-      },
-      "middleware": {
-        "auth": "Basic ${process.env.AUTH_HEADER}"
+        "WWW-Authenticate": "Basic",
+        "Basic-Auth": "Basic ${process.env.AUTH_HEADER}"
       }
     }
   ]
