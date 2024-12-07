@@ -59,12 +59,20 @@ interface Emotion {
 }
 
 interface EventoPensamientoEmocion {
-  id: string
-  evento_id: string
-  pensamiento_id: string
-  emocion_id: string
-  intensidad_emocion: number
-  observaciones?: string
+  id: string;
+  evento_id: string;
+  pensamiento_id: string;
+  emocion_id: string;
+  intensidad_emocion: number;
+  observaciones?: string;
+  pensamientos?: {
+    codigo: string;
+    pensamiento: string;
+  };
+  emociones_tipo?: {
+    codigo: string;
+    nombre: string;
+  };
 }
 
 interface Evento {
@@ -74,22 +82,7 @@ interface Evento {
   lugar?: string;
   contexto?: string;
   fecha_hora: string;
-  eventos_pensamientos_emociones?: Array<{
-    id: string;
-    evento_id: string;
-    pensamiento_id: string;
-    emocion_id: string;
-    intensidad_emocion: number;
-    observaciones?: string;
-    pensamientos?: {
-      codigo: string;
-      pensamiento: string;
-    };
-    emociones_tipo?: {
-      codigo: string;
-      nombre: string;
-    };
-  }>;
+  eventos_pensamientos_emociones: EventoPensamientoEmocion[]; // Sin opcional
 }
 
 const RegistroEventos = () => {
@@ -162,7 +155,7 @@ const handleOpenModal = async () => {
     paciente_id: selectedPatient?.id || '',
     descripcion: '',
     fecha_hora: new Date().toISOString(),
-    eventos_pensamientos_emociones: [] // Cambiado aquí
+    eventos_pensamientos_emociones: [] // Aseguramos que siempre sea un array
   });
   setModalOpen(true);
 }
@@ -199,8 +192,8 @@ const handleOpenModal = async () => {
 
     const nuevoEventoId = eventoResult.data.id;
 
-    // Actualizado aquí
-    for (const pe of currentEvento.eventos_pensamientos_emociones || []) {
+    // Aquí procesamos las relaciones
+    for (const pe of currentEvento.eventos_pensamientos_emociones) {
       const relacionResult = await supabase
         .from('eventos_pensamientos_emociones')
         .insert({
@@ -393,17 +386,18 @@ const handleOpenModal = async () => {
                       if (!prev) return null;
                       return {
                         ...prev,
-                        eventos_pensamientos_emociones: [ // Cambiado aquí
-                          ...prev.eventos_pensamientos_emociones, // Y aquí
+                        eventos_pensamientos_emociones: [
+                          ...prev.eventos_pensamientos_emociones,
                           {
                             id: '',
                             evento_id: '',
                             pensamiento_id: '',
                             emocion_id: '',
-                            intensidad_emocion: 5
+                            intensidad_emocion: 5,
+                            observaciones: ''
                           }
                         ]
-                      }
+                      };
                     })}
                   >
                     Agregar
