@@ -68,13 +68,28 @@ interface EventoPensamientoEmocion {
 }
 
 interface Evento {
-  id?: string
-  paciente_id: string
-  descripcion: string
-  lugar?: string
-  contexto?: string
-  fecha_hora: string
-  pensamientos_emociones: EventoPensamientoEmocion[]
+  id?: string;
+  paciente_id: string;
+  descripcion: string;
+  lugar?: string;
+  contexto?: string;
+  fecha_hora: string;
+  eventos_pensamientos_emociones?: Array<{
+    id: string;
+    evento_id: string;
+    pensamiento_id: string;
+    emocion_id: string;
+    intensidad_emocion: number;
+    observaciones?: string;
+    pensamientos?: {
+      codigo: string;
+      pensamiento: string;
+    };
+    emociones_tipo?: {
+      codigo: string;
+      nombre: string;
+    };
+  }>;
 }
 
 const RegistroEventos = () => {
@@ -140,17 +155,16 @@ const RegistroEventos = () => {
   }, [selectedPatient])
 
 
-  const handleOpenModal = async () => {
-  // Recargar emociones al abrir el modal
-  await loadEmociones()
+const handleOpenModal = async () => {
+  await loadEmociones();
   
   setCurrentEvento({
     paciente_id: selectedPatient?.id || '',
     descripcion: '',
     fecha_hora: new Date().toISOString(),
-    pensamientos_emociones: []
-  })
-  setModalOpen(true)
+    eventos_pensamientos_emociones: [] // Cambiado aquí
+  });
+  setModalOpen(true);
 }
 
   useEffect(() => {
@@ -169,12 +183,6 @@ const RegistroEventos = () => {
   try {
     if (!currentEvento || !selectedPatient) return;
 
-    console.log('Guardando evento:', {
-      evento: currentEvento,
-      paciente: selectedPatient.id
-    });
-
-    // Primero insertamos el evento
     const eventoResult = await supabase
       .from('eventos')
       .insert({
@@ -187,15 +195,12 @@ const RegistroEventos = () => {
       .select()
       .single();
 
-    if (eventoResult.error) {
-      throw eventoResult.error;
-    }
+    if (eventoResult.error) throw eventoResult.error;
 
-    // Si llegamos aquí, el evento se guardó correctamente
     const nuevoEventoId = eventoResult.data.id;
 
-    // Ahora insertamos las relaciones
-    for (const pe of currentEvento.pensamientos_emociones) {
+    // Actualizado aquí
+    for (const pe of currentEvento.eventos_pensamientos_emociones || []) {
       const relacionResult = await supabase
         .from('eventos_pensamientos_emociones')
         .insert({
@@ -206,12 +211,9 @@ const RegistroEventos = () => {
           observaciones: pe.observaciones || ''
         });
 
-      if (relacionResult.error) {
-        throw relacionResult.error;
-      }
+      if (relacionResult.error) throw relacionResult.error;
     }
 
-    // Todo salió bien
     setModalOpen(false);
     setCurrentEvento(null);
     setShowMessage(true);
@@ -388,11 +390,11 @@ const RegistroEventos = () => {
                     color="primary"
                     startContent={<Plus />}
                     onClick={() => setCurrentEvento(prev => {
-                      if (!prev) return null
+                      if (!prev) return null;
                       return {
                         ...prev,
-                        pensamientos_emociones: [
-                          ...prev.pensamientos_emociones,
+                        eventos_pensamientos_emociones: [ // Cambiado aquí
+                          ...prev.eventos_pensamientos_emociones, // Y aquí
                           {
                             id: '',
                             evento_id: '',
@@ -408,7 +410,7 @@ const RegistroEventos = () => {
                   </Button>
                 </div>
 
-                {currentEvento?.pensamientos_emociones.map((pe, index) => (
+                {currentEvento?.eventos_pensamientos_emociones.map((pe, index) => (
                   <Card key={index}>
                     <CardBody className="space-y-4">
                       <div className="flex justify-between">
@@ -420,9 +422,9 @@ const RegistroEventos = () => {
                           variant="light"
                           onClick={() => setCurrentEvento(prev => {
                             if (!prev) return null
-                            const newPE = [...prev.pensamientos_emociones]
+                            const newPE = [...prev.eventos_pensamientos_emociones]
                             newPE.splice(index, 1)
-                            return {...prev, pensamientos_emociones: newPE}
+                            return {...prev, eventos_pensamientos_emociones: newPE}
                           })}
                         >
                           <Trash2 className="w-4 h-4" />
@@ -433,10 +435,10 @@ const RegistroEventos = () => {
                         label="Pensamiento"
                         selectedKeys={pe.pensamiento_id ? [pe.pensamiento_id] : []}
                         onChange={(e) => {
-                          const newPE = [...currentEvento.pensamientos_emociones]
+                          const newPE = [...currentEvento.eventos_pensamientos_emociones]
                           newPE[index] = {...pe, pensamiento_id: e.target.value}
                           setCurrentEvento(prev => 
-                            prev ? {...prev, pensamientos_emociones: newPE} : null
+                            prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
                           )
                         }}
                       >
@@ -451,10 +453,10 @@ const RegistroEventos = () => {
                         label="Emoción"
                         selectedKeys={pe.emocion_id ? [pe.emocion_id] : []}
                         onChange={(e) => {
-                          const newPE = [...currentEvento.pensamientos_emociones]
+                          const newPE = [...currentEvento.eventos_pensamientos_emociones]
                           newPE[index] = {...pe, emocion_id: e.target.value}
                           setCurrentEvento(prev => 
-                            prev ? {...prev, pensamientos_emociones: newPE} : null
+                            prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
                           )
                         }}
                       >
@@ -477,10 +479,10 @@ const RegistroEventos = () => {
                           minValue={0}
                           value={pe.intensidad_emocion}
                           onChange={(value) => {
-                            const newPE = [...currentEvento.pensamientos_emociones]
+                            const newPE = [...currentEvento.eventos_pensamientos_emociones]
                             newPE[index] = {...pe, intensidad_emocion: Number(value)}
                             setCurrentEvento(prev => 
-                              prev ? {...prev, pensamientos_emociones: newPE} : null
+                              prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
                             )
                           }}
                           className="max-w-md"
@@ -492,10 +494,10 @@ const RegistroEventos = () => {
                         placeholder="Notas adicionales..."
                         value={pe.observaciones || ''}
                         onChange={(e) => {
-                          const newPE = [...currentEvento.pensamientos_emociones]
+                          const newPE = [...currentEvento.eventos_pensamientos_emociones]
                           newPE[index] = {...pe, observaciones: e.target.value}
                           setCurrentEvento(prev => 
-                            prev ? {...prev, pensamientos_emociones: newPE} : null
+                            prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
                           )
                         }}
                       />
@@ -516,8 +518,8 @@ const RegistroEventos = () => {
               isDisabled={
                 !currentEvento?.descripcion ||
                 !currentEvento?.fecha_hora ||
-                currentEvento.pensamientos_emociones.length === 0 ||
-                currentEvento.pensamientos_emociones.some(pe => 
+                currentEvento.eventos_pensamientos_emociones.length === 0 ||
+                currentEvento.eventos_pensamientos_emociones.some(pe => 
                   !pe.pensamiento_id || !pe.emocion_id
                 )
               }
