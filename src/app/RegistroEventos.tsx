@@ -172,6 +172,10 @@ const handleOpenModal = async () => {
     }
   }, [selectedPatient, loadPensamientos, loadEventos])
 
+  useEffect(() => {
+  console.log('Estado actual de emociones:', emociones)
+  }, [emociones])
+
   const handleSave = async () => {
   try {
     if (!currentEvento || !selectedPatient) return;
@@ -444,23 +448,32 @@ const handleOpenModal = async () => {
                       </Select>
 
                      <Select
-                        label="Emoción"
-                        selectedKeys={pe.emocion_id ? [pe.emocion_id] : []}
-                        onChange={(e) => {
-                          const newPE = [...currentEvento.eventos_pensamientos_emociones]
-                          newPE[index] = {...pe, emocion_id: e.target.value}
-                          setCurrentEvento(prev => 
-                            prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
-                          )
-                        }}
-                      >
-                        {console.log('Estado actual de emociones:', emociones)} {/* Para debugging */}
-                        {emociones.map((e) => (
-                          <SelectItem key={e.id} value={e.id}>
-                            {e.codigo} - {e.nombre}
-                          </SelectItem>
-                        ))}
-                      </Select>
+                          label="Emoción"
+                          placeholder="Seleccione una emoción" // Añadimos placeholder
+                          selectedKeys={pe.emocion_id ? [pe.emocion_id] : []}
+                          onChange={(e) => {
+                            if (!currentEvento) return; // Validación adicional
+                            const newPE = [...currentEvento.eventos_pensamientos_emociones];
+                            newPE[index] = {...pe, emocion_id: e.target.value};
+                            setCurrentEvento({
+                              ...currentEvento,
+                              eventos_pensamientos_emociones: newPE
+                            });
+                          }}
+                          isRequired // Para indicar que es campo obligatorio
+                        >
+                          {emociones && emociones.length > 0 ? (
+                            emociones.map((e) => (
+                              <SelectItem key={e.id} value={e.id}>
+                                {e.codigo} - {e.nombre}
+                              </SelectItem>
+                            ))
+                          ) : (
+                            <SelectItem key="no-emociones" value="">
+                              No hay emociones disponibles
+                            </SelectItem>
+                          )}
+                        </Select>
 
                       <div>
                         <label className="block text-sm font-medium mb-2">
