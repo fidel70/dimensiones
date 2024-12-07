@@ -331,18 +331,28 @@ const handleOpenModal = async () => {
 
       {/* Modal para nuevo evento */}
       <Modal 
-        isOpen={modalOpen} 
-        onClose={() => setModalOpen(false)}
-        size="3xl"
-      >
+          isOpen={modalOpen} 
+          onClose={() => setModalOpen(false)}
+          size="3xl"
+          className="sm:mx-auto mx-0"
+          // Añadir estas propiedades para móviles
+          classNames={{
+            wrapper: "min-h-screen",
+            base: "sm:max-w-3xl h-full sm:h-auto sm:m-auto m-0",
+            body: "sm:p-6 p-4 overflow-y-auto",
+            header: "sm:p-6 p-4",
+            footer: "sm:p-6 p-4"
+          }}
+          scrollBehavior="inside"
+        >
         <ModalContent>
-          <ModalHeader>Nuevo Evento</ModalHeader>
           <ModalBody>
             <div className="space-y-4">
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Input
                   type="datetime-local"
                   label="Fecha y Hora"
+                  className="w-full"
                   value={currentEvento?.fecha_hora.slice(0, 16)}
                   onChange={(e) => setCurrentEvento(prev => 
                     prev ? {...prev, fecha_hora: e.target.value} : null
@@ -409,8 +419,8 @@ const handleOpenModal = async () => {
                 </div>
 
                 {currentEvento?.eventos_pensamientos_emociones.map((pe, index) => (
-                  <Card key={index}>
-                    <CardBody className="space-y-4">
+                  <Card key={index} className="w-full">
+                    <CardBody className="space-y-4 p-3 sm:p-4">
                       <div className="flex justify-between">
                         <h4 className="font-medium">Registro {index + 1}</h4>
                         <Button
@@ -475,27 +485,26 @@ const handleOpenModal = async () => {
                           )}
                         </Select>
 
-                      <div>
-                        <label className="block text-sm font-medium mb-2">
-                          Intensidad de la Emoción ({pe.intensidad_emocion}/10)
-                        </label>
-                        <Slider
-                          size="sm"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={pe.intensidad_emocion}
-                          onChange={(value) => {
-                            const newPE = [...currentEvento.eventos_pensamientos_emociones]
-                            newPE[index] = {...pe, intensidad_emocion: Number(value)}
-                            setCurrentEvento(prev => 
-                              prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
-                            )
-                          }}
-                          className="max-w-md"
-                        />
-                      </div>
-
+                      <div className="w-full max-w-full sm:max-w-md">
+                          <label className="block text-sm font-medium mb-2">
+                            Intensidad de la Emoción ({pe.intensidad_emocion}/10)
+                          </label>
+                          <Slider
+                            size="sm"
+                            step={1}
+                            maxValue={10}
+                            minValue={0}
+                            value={pe.intensidad_emocion}
+                            onChange={(value) => {
+                              const newPE = [...currentEvento.eventos_pensamientos_emociones]
+                              newPE[index] = {...pe, intensidad_emocion: Number(value)}
+                              setCurrentEvento(prev => 
+                                prev ? {...prev, eventos_pensamientos_emociones: newPE} : null
+                              )
+                            }}
+                            className="max-w-full"
+                          />
+                        </div>
                       <Textarea
                         label="Observaciones"
                         placeholder="Notas adicionales..."
@@ -514,27 +523,33 @@ const handleOpenModal = async () => {
               </div>
             </div>
           </ModalBody>
-          <ModalFooter>
-            <Button color="danger" variant="light" onClick={() => setModalOpen(false)}>
-              Cancelar
-            </Button>
-            <Button 
-              color="primary" 
-              onClick={handleSave}
-              startContent={<Save />}
-              isDisabled={
-                !currentEvento?.descripcion ||
-                !currentEvento?.fecha_hora ||
-                currentEvento.eventos_pensamientos_emociones.length === 0 ||
-                currentEvento.eventos_pensamientos_emociones.some(pe => 
-                  !pe.pensamiento_id || !pe.emocion_id
-                )
-              }
-            >
-              Guardar
-            </Button>
-          </ModalFooter>
-        </ModalContent>
+          <ModalFooter className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <Button 
+                color="danger" 
+                variant="light" 
+                onClick={() => setModalOpen(false)}
+                className="w-full sm:w-auto"
+              >
+                Cancelar
+              </Button>
+              <Button 
+                color="primary" 
+                onClick={handleSave}
+                startContent={<Save />}
+                className="w-full sm:w-auto"
+                isDisabled={
+                  !currentEvento?.descripcion ||
+                  !currentEvento?.fecha_hora ||
+                  currentEvento.eventos_pensamientos_emociones.length === 0 ||
+                  currentEvento.eventos_pensamientos_emociones.some(pe => 
+                    !pe.pensamiento_id || !pe.emocion_id
+                  )
+                }
+              >
+                Guardar
+              </Button>
+            </ModalFooter>
+          </ModalContent>
       </Modal>
 
       {/* Mensaje de éxito */}
