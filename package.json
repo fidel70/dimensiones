@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-app",
+  "name": "dimensiones",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,6 +20,9 @@
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slider": "^1.2.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-aria/datepicker": "^3.12.0",
+    "@react-aria/i18n": "^3.12.4",
+    "@react-aria/spinbutton": "^3.6.10",
     "@shadcn/ui": "^0.0.4",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/auth-ui-react": "^0.4.7",
@@ -64,5 +67,9 @@
     "supabase": "^1.131.4",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.7.2"
-  }
+  },
+  "description": "Web App Dimensiones Pensamientos Psicologia",
+  "main": ".eslintrc.js",
+  "author": "",
+  "license": "ISC"
 }

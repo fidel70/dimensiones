@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 
 // Define valid component names
-type ComponentName = 'RegistroPensamientos' | 'RegistroDimensiones';
+type ComponentName = 'RegistroPensamientos' | 'RegistroDimensiones' | 'RegistroEventos';
 
 const MainPage = () => {
   const [currentView, setCurrentView] = useState<ComponentName | null>(null);
@@ -52,6 +52,19 @@ const MainPage = () => {
             `}
           >
             Registro de Dimensiones
+          </button>
+          <button 
+            onClick={() => loadComponent('RegistroEventos')}
+            className={`
+              py-3 px-6 rounded-lg font-semibold text-lg
+              ${currentView === 'RegistroEventos' 
+                ? 'bg-green-500 text-white' 
+                : 'bg-white text-blue-600 hover:bg-gray-100'
+              }
+              shadow-md
+            `}
+          >
+            Registro de Eventos
           </button>
         </div>
       </header>
