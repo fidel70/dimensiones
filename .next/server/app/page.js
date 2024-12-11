@@ -21,10 +21,11 @@ exports.modules = {
 var map = {
 	"./RegistroDimensiones": [
 		"(ssr)/./src/app/RegistroDimensiones.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/@react-aria",
 		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
 		"vendor-chunks/@supabase",
 		"vendor-chunks/tr46",
 		"vendor-chunks/@react-stately",
@@ -40,10 +41,11 @@ var map = {
 	],
 	"./RegistroDimensiones.tsx": [
 		"(ssr)/./src/app/RegistroDimensiones.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/@react-aria",
 		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
 		"vendor-chunks/@supabase",
 		"vendor-chunks/tr46",
 		"vendor-chunks/@react-stately",
@@ -59,10 +61,11 @@ var map = {
 	],
 	"./RegistroEventos": [
 		"(ssr)/./src/app/RegistroEventos.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/@react-aria",
 		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
 		"vendor-chunks/@supabase",
 		"vendor-chunks/tr46",
 		"vendor-chunks/@react-stately",
@@ -78,13 +81,60 @@ var map = {
 		"vendor-chunks/use-composed-ref",
 		"vendor-chunks/@babel",
 		"_ssr_src_app_RegistroEventos_tsx"
+	],
+	"./RegistroEventos-back": [
+		"(ssr)/./src/app/RegistroEventos-back.tsx",
+		9,
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
+		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@supabase",
+		"vendor-chunks/tr46",
+		"vendor-chunks/@react-stately",
+		"vendor-chunks/tailwind-variants",
+		"vendor-chunks/whatwg-url",
+		"vendor-chunks/@tanstack",
+		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
+		"vendor-chunks/motion-utils",
+		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
+		"vendor-chunks/react-textarea-autosize",
+		"vendor-chunks/use-composed-ref",
+		"vendor-chunks/@babel",
+		"_ssr_src_app_RegistroEventos-back_tsx"
+	],
+	"./RegistroEventos-back.tsx": [
+		"(ssr)/./src/app/RegistroEventos-back.tsx",
+		9,
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
+		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@supabase",
+		"vendor-chunks/tr46",
+		"vendor-chunks/@react-stately",
+		"vendor-chunks/tailwind-variants",
+		"vendor-chunks/whatwg-url",
+		"vendor-chunks/@tanstack",
+		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
+		"vendor-chunks/motion-utils",
+		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
+		"vendor-chunks/react-textarea-autosize",
+		"vendor-chunks/use-composed-ref",
+		"vendor-chunks/@babel",
+		"_ssr_src_app_RegistroEventos-back_tsx"
 	],
 	"./RegistroEventos.tsx": [
 		"(ssr)/./src/app/RegistroEventos.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/@react-aria",
 		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
 		"vendor-chunks/@supabase",
 		"vendor-chunks/tr46",
 		"vendor-chunks/@react-stately",
@@ -101,12 +151,105 @@ var map = {
 		"vendor-chunks/@babel",
 		"_ssr_src_app_RegistroEventos_tsx"
 	],
-	"./RegistroPensamientos": [
-		"(ssr)/./src/app/RegistroPensamientos.tsx",
+	"./RegistroEventos_updated": [
+		"(ssr)/./src/app/RegistroEventos_updated.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/@react-aria",
 		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@supabase",
+		"vendor-chunks/tr46",
+		"vendor-chunks/@react-stately",
+		"vendor-chunks/tailwind-variants",
+		"vendor-chunks/whatwg-url",
+		"vendor-chunks/@tanstack",
+		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
+		"vendor-chunks/motion-utils",
+		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
+		"vendor-chunks/react-textarea-autosize",
+		"vendor-chunks/use-composed-ref",
+		"vendor-chunks/@babel",
+		"_ssr_src_app_RegistroEventos_updated_tsx"
+	],
+	"./RegistroEventos_updated.tsx": [
+		"(ssr)/./src/app/RegistroEventos_updated.tsx",
+		9,
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
+		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@supabase",
+		"vendor-chunks/tr46",
+		"vendor-chunks/@react-stately",
+		"vendor-chunks/tailwind-variants",
+		"vendor-chunks/whatwg-url",
+		"vendor-chunks/@tanstack",
+		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
+		"vendor-chunks/motion-utils",
+		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
+		"vendor-chunks/react-textarea-autosize",
+		"vendor-chunks/use-composed-ref",
+		"vendor-chunks/@babel",
+		"_ssr_src_app_RegistroEventos_updated_tsx"
+	],
+	"./RegistroEventosback01": [
+		"(ssr)/./src/app/RegistroEventosback01.tsx",
+		9,
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
+		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@supabase",
+		"vendor-chunks/tr46",
+		"vendor-chunks/@react-stately",
+		"vendor-chunks/tailwind-variants",
+		"vendor-chunks/whatwg-url",
+		"vendor-chunks/@tanstack",
+		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
+		"vendor-chunks/motion-utils",
+		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
+		"vendor-chunks/react-textarea-autosize",
+		"vendor-chunks/use-composed-ref",
+		"vendor-chunks/@babel",
+		"_ssr_src_app_RegistroEventosback01_tsx"
+	],
+	"./RegistroEventosback01.tsx": [
+		"(ssr)/./src/app/RegistroEventosback01.tsx",
+		9,
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
+		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
+		"vendor-chunks/@supabase",
+		"vendor-chunks/tr46",
+		"vendor-chunks/@react-stately",
+		"vendor-chunks/tailwind-variants",
+		"vendor-chunks/whatwg-url",
+		"vendor-chunks/@tanstack",
+		"vendor-chunks/@internationalized",
+		"vendor-chunks/lucide-react",
+		"vendor-chunks/motion-utils",
+		"vendor-chunks/clsx",
+		"vendor-chunks/date-fns",
+		"vendor-chunks/react-textarea-autosize",
+		"vendor-chunks/use-composed-ref",
+		"vendor-chunks/@babel",
+		"_ssr_src_app_RegistroEventosback01_tsx"
+	],
+	"./RegistroPensamientos": [
+		"(ssr)/./src/app/RegistroPensamientos.tsx",
+		9,
+		"vendor-chunks/@nextui-org",
+		"vendor-chunks/framer-motion",
+		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
 		"vendor-chunks/@supabase",
 		"vendor-chunks/tr46",
 		"vendor-chunks/@react-stately",
@@ -121,10 +264,11 @@ var map = {
 	],
 	"./RegistroPensamientos.tsx": [
 		"(ssr)/./src/app/RegistroPensamientos.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
-		"vendor-chunks/@react-aria",
 		"vendor-chunks/next",
+		"vendor-chunks/@react-aria",
 		"vendor-chunks/@supabase",
 		"vendor-chunks/tr46",
 		"vendor-chunks/@react-stately",
@@ -137,34 +281,52 @@ var map = {
 		"vendor-chunks/clsx",
 		"_ssr_src_app_RegistroPensamientos_tsx"
 	],
+	"./cambios": [
+		"(ssr)/./src/app/cambios.tsx",
+		7,
+		"_ssr_src_app_cambios_tsx"
+	],
+	"./cambios.tsx": [
+		"(ssr)/./src/app/cambios.tsx",
+		7,
+		"_ssr_src_app_cambios_tsx"
+	],
 	"./globals.css": [
 		"(ssr)/./src/app/globals.css",
+		9,
 		"_ssr_src_app_globals_css"
 	],
 	"./layout": [
 		"(ssr)/./src/app/layout.tsx",
+		9,
 		"_ssr_src_app_layout_tsx"
 	],
 	"./layout.tsx": [
 		"(ssr)/./src/app/layout.tsx",
+		9,
 		"_ssr_src_app_layout_tsx"
 	],
 	"./metadat": [
 		"(ssr)/./src/app/metadat.ts",
+		9,
 		"_ssr_src_app_metadat_ts"
 	],
 	"./metadat.ts": [
 		"(ssr)/./src/app/metadat.ts",
+		9,
 		"_ssr_src_app_metadat_ts"
 	],
 	"./page": [
-		"(ssr)/./src/app/page.tsx"
+		"(ssr)/./src/app/page.tsx",
+		9
 	],
 	"./page.tsx": [
-		"(ssr)/./src/app/page.tsx"
+		"(ssr)/./src/app/page.tsx",
+		9
 	],
 	"./provider": [
 		"(ssr)/./src/app/provider.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
 		"vendor-chunks/@react-aria",
@@ -172,6 +334,7 @@ var map = {
 	],
 	"./provider.tsx": [
 		"(ssr)/./src/app/provider.tsx",
+		9,
 		"vendor-chunks/@nextui-org",
 		"vendor-chunks/framer-motion",
 		"vendor-chunks/@react-aria",
@@ -179,6 +342,7 @@ var map = {
 	],
 	"./styles.css": [
 		"(ssr)/./src/app/styles.css",
+		9,
 		"_ssr_src_app_styles_css"
 	]
 };
@@ -192,8 +356,8 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() => {
-		return __webpack_require__(id);
+	return Promise.all(ids.slice(2).map(__webpack_require__.e)).then(() => {
+		return __webpack_require__.t(id, ids[1] | 16)
 	});
 }
 webpackAsyncContext.keys = () => (Object.keys(map));

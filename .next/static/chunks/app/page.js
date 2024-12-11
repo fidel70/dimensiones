@@ -17,64 +17,120 @@
 var map = {
 	"./RegistroDimensiones": [
 		"(app-pages-browser)/./src/app/RegistroDimensiones.tsx",
+		9,
 		"_app-pages-browser_src_app_RegistroDimensiones_tsx"
 	],
 	"./RegistroDimensiones.tsx": [
 		"(app-pages-browser)/./src/app/RegistroDimensiones.tsx",
+		9,
 		"_app-pages-browser_src_app_RegistroDimensiones_tsx"
 	],
 	"./RegistroEventos": [
 		"(app-pages-browser)/./src/app/RegistroEventos.tsx",
+		9,
 		"_app-pages-browser_src_app_RegistroEventos_tsx"
+	],
+	"./RegistroEventos-back": [
+		"(app-pages-browser)/./src/app/RegistroEventos-back.tsx",
+		9,
+		"_app-pages-browser_src_app_RegistroEventos-back_tsx"
+	],
+	"./RegistroEventos-back.tsx": [
+		"(app-pages-browser)/./src/app/RegistroEventos-back.tsx",
+		9,
+		"_app-pages-browser_src_app_RegistroEventos-back_tsx"
 	],
 	"./RegistroEventos.tsx": [
 		"(app-pages-browser)/./src/app/RegistroEventos.tsx",
+		9,
 		"_app-pages-browser_src_app_RegistroEventos_tsx"
+	],
+	"./RegistroEventos_updated": [
+		"(app-pages-browser)/./src/app/RegistroEventos_updated.tsx",
+		9,
+		"_app-pages-browser_src_app_RegistroEventos_updated_tsx"
+	],
+	"./RegistroEventos_updated.tsx": [
+		"(app-pages-browser)/./src/app/RegistroEventos_updated.tsx",
+		9,
+		"_app-pages-browser_src_app_RegistroEventos_updated_tsx"
+	],
+	"./RegistroEventosback01": [
+		"(app-pages-browser)/./src/app/RegistroEventosback01.tsx",
+		9,
+		"_app-pages-browser_src_app_RegistroEventosback01_tsx"
+	],
+	"./RegistroEventosback01.tsx": [
+		"(app-pages-browser)/./src/app/RegistroEventosback01.tsx",
+		9,
+		"_app-pages-browser_src_app_RegistroEventosback01_tsx"
 	],
 	"./RegistroPensamientos": [
 		"(app-pages-browser)/./src/app/RegistroPensamientos.tsx",
+		9,
 		"_app-pages-browser_src_app_RegistroPensamientos_tsx"
 	],
 	"./RegistroPensamientos.tsx": [
 		"(app-pages-browser)/./src/app/RegistroPensamientos.tsx",
+		9,
 		"_app-pages-browser_src_app_RegistroPensamientos_tsx"
+	],
+	"./cambios": [
+		"(app-pages-browser)/./src/app/cambios.tsx",
+		7,
+		"_app-pages-browser_src_app_cambios_tsx"
+	],
+	"./cambios.tsx": [
+		"(app-pages-browser)/./src/app/cambios.tsx",
+		7,
+		"_app-pages-browser_src_app_cambios_tsx"
 	],
 	"./globals.css": [
 		"(app-pages-browser)/./src/app/globals.css",
+		9,
 		"_app-pages-browser_src_app_globals_css"
 	],
 	"./layout": [
 		"(app-pages-browser)/./src/app/layout.tsx",
+		9,
 		"_app-pages-browser_src_app_layout_tsx"
 	],
 	"./layout.tsx": [
 		"(app-pages-browser)/./src/app/layout.tsx",
+		9,
 		"_app-pages-browser_src_app_layout_tsx"
 	],
 	"./metadat": [
 		"(app-pages-browser)/./src/app/metadat.ts",
+		9,
 		"_app-pages-browser_src_app_metadat_ts"
 	],
 	"./metadat.ts": [
 		"(app-pages-browser)/./src/app/metadat.ts",
+		9,
 		"_app-pages-browser_src_app_metadat_ts"
 	],
 	"./page": [
-		"(app-pages-browser)/./src/app/page.tsx"
+		"(app-pages-browser)/./src/app/page.tsx",
+		9
 	],
 	"./page.tsx": [
-		"(app-pages-browser)/./src/app/page.tsx"
+		"(app-pages-browser)/./src/app/page.tsx",
+		9
 	],
 	"./provider": [
 		"(app-pages-browser)/./src/app/provider.tsx",
+		9,
 		"_app-pages-browser_src_app_provider_tsx"
 	],
 	"./provider.tsx": [
 		"(app-pages-browser)/./src/app/provider.tsx",
+		9,
 		"_app-pages-browser_src_app_provider_tsx"
 	],
 	"./styles.css": [
 		"(app-pages-browser)/./src/app/styles.css",
+		9,
 		"_app-pages-browser_src_app_styles_css"
 	]
 };
@@ -88,8 +144,8 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() => {
-		return __webpack_require__(id);
+	return Promise.all(ids.slice(2).map(__webpack_require__.e)).then(() => {
+		return __webpack_require__.t(id, ids[1] | 16)
 	});
 }
 webpackAsyncContext.keys = () => (Object.keys(map));
