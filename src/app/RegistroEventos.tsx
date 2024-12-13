@@ -123,10 +123,11 @@ const RegistroEventos = () => {
 const loadEventos = useCallback(async () => {
   if (!selectedPatient || !selectedDate) return
   
-  // Ajustar a zona horaria de Perú (UTC-5)
   const date = new Date(selectedDate)
-  const startDate = new Date(date.getTime() + (5 * 60 * 60 * 1000)).toISOString()
-  const endDate = new Date(date.getTime() + (29 * 60 * 60 * 1000)).toISOString()
+  // Establecer hora a 00:00:00
+  const startOfDayPeru = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0)
+  // Establecer hora a 23:59:59
+  const endOfDayPeru = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59)
   
   const { data } = await supabase
     .from('eventos')
@@ -139,8 +140,8 @@ const loadEventos = useCallback(async () => {
       )
     `)
     .eq('paciente_id', selectedPatient.id)
-    .gte('fecha_hora', startDate)
-    .lte('fecha_hora', endDate)
+    .gte('fecha_hora', startOfDayPeru.toISOString())
+    .lte('fecha_hora', endOfDayPeru.toISOString())
     .order('fecha_hora', { ascending: false })
   
   if (data) setEventos(data)
@@ -161,51 +162,63 @@ const handleOpenModal = async () => {
   setModalOpen(true)
 }
   const handleSave = async () => {
-    try {
-      if (!currentEvento || !selectedPatient) return;
-
-      const eventoResult = await supabase
-        .from('eventos')
-        .insert({
-          paciente_id: selectedPatient.id,
-          descripcion: currentEvento.descripcion,
-          lugar: currentEvento.lugar || '',
-          contexto: currentEvento.contexto || '',
-          fecha_hora: currentEvento.fecha_hora
-        })
-        .select()
-        .single();
-
-      if (eventoResult.error) throw eventoResult.error;
-
-      const nuevoEventoId = eventoResult.data.id;
-
-      for (const pe of currentEvento.eventos_pensamientos_emociones) {
-        const relacionResult = await supabase
-          .from('eventos_pensamientos_emociones')
-          .insert({
-            evento_id: nuevoEventoId,
-            pensamiento_id: pe.pensamiento_id,
-            emocion_id: pe.emocion_id,
-            intensidad_emocion: pe.intensidad_emocion,
-            observaciones: pe.observaciones || ''
-          });
-
-        if (relacionResult.error) throw relacionResult.error;
-      }
-
-      setModalOpen(false);
-      setCurrentEvento(null);
-      setShowMessage(true);
-      setTimeout(() => setShowMessage(false), 3000);
-      await loadEventos();
-
-    } catch (error: any) {
-      console.error('Error detallado:', error);
-      alert('Error al guardar el evento: ' + (error.message || 'Error desconocido'));
+  try {
+    if (!currentEvento || !selectedPatient) {
+      throw new Error('Faltan datos requeridos');
     }
-  }
 
+    if (!currentEvento.descripcion.trim()) {
+      throw new Error('La descripción es requerida');
+    }
+
+    if (currentEvento.eventos_pensamientos_emociones.length === 0) {
+      throw new Error('Debe agregar al menos un pensamiento y emoción');
+    }
+
+    const eventoResult = await supabase
+      .from('eventos')
+      .insert({
+        paciente_id: selectedPatient.id,
+        descripcion: currentEvento.descripcion.trim(),
+        lugar: currentEvento.lugar?.trim() || '',
+        contexto: currentEvento.contexto?.trim() || '',
+        fecha_hora: currentEvento.fecha_hora
+      })
+      .select()
+      .single();
+
+    if (eventoResult.error) {
+      throw new Error(`Error al guardar el evento: ${eventoResult.error.message}`);
+    }
+
+    // Guardar las relaciones pensamiento-emoción
+    for (const pe of currentEvento.eventos_pensamientos_emociones) {
+      const relacionResult = await supabase
+        .from('eventos_pensamientos_emociones')
+        .insert({
+          evento_id: eventoResult.data.id,
+          pensamiento_id: pe.pensamiento_id,
+          emocion_id: pe.emocion_id,
+          intensidad_emocion: pe.intensidad_emocion,
+          observaciones: pe.observaciones || ''
+        });
+
+      if (relacionResult.error) {
+        throw new Error(`Error al guardar la relación: ${relacionResult.error.message}`);
+      }
+    }
+
+    setModalOpen(false);
+    setCurrentEvento(null);
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 3000);
+    await loadEventos();
+
+  } catch (error: any) {
+    console.error('Error detallado:', error);
+    alert('Error al guardar el evento: ' + (error.message || 'Error desconocido'));
+  }
+}
   useEffect(() => {
     loadPatients()
     loadEmociones()
@@ -217,6 +230,17 @@ const handleOpenModal = async () => {
       loadEventos()
     }
   }, [selectedPatient, selectedDate, loadPensamientos, loadEventos])
+
+
+    const isFormValid = currentEvento && 
+    currentEvento.descripcion.trim() && 
+    currentEvento.eventos_pensamientos_emociones.length > 0 &&
+    currentEvento.eventos_pensamientos_emociones.every(pe => 
+      pe.pensamiento_id && 
+      pe.emocion_id && 
+      pe.intensidad_emocion >= 0 && 
+      pe.intensidad_emocion <= 10
+    );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4">
@@ -341,13 +365,8 @@ const handleOpenModal = async () => {
         scrollBehavior="inside"
         backdrop="blur"
         placement="center"
-        className="w-full max-w-[95vw] sm:max-w-3xl mx-2"
-      > setModalOpen(false)}
-        size="3xl"
-        scrollBehavior="inside"
-        className="sm:mx-auto mx-4"
       >
-        <ModalContent className="h-[90vh] sm:h-auto">
+      <ModalContent className="mx-2 w-full max-w-[95vw] sm:max-w-3xl h-[90vh] sm:h-auto">
           <ModalBody className="overflow-y-auto">
             <div className="space-y-4">
               <Textarea
@@ -524,21 +543,15 @@ const handleOpenModal = async () => {
             >
               Cancelar
             </Button>
-            <Button 
-              color="primary" 
-              onClick={handleSave}
-              startContent={<Save />}
-              className="w-full sm:w-auto"
-              isDisabled={
-                !currentEvento?.descripcion ||
-                currentEvento.eventos_pensamientos_emociones.length === 0 ||
-                currentEvento.eventos_pensamientos_emociones.some(pe => 
-                  !pe.pensamiento_id || !pe.emocion_id
-                )
-              }
-            >
-              Guardar
-            </Button>
+          <Button 
+          color="primary" 
+          onClick={handleSave}
+          startContent={<Save />}
+          className="w-full sm:w-auto"
+          isDisabled={!isFormValid}  // <-- Aquí usas la nueva validación
+          >
+          Guardar
+        </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
