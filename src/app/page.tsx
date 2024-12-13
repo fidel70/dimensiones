@@ -9,11 +9,11 @@ type ComponentName = 'RegistroPensamientos' | 'RegistroDimensiones' | 'RegistroE
 
 const MainPage = () => {
   const [currentView, setCurrentView] = useState<ComponentName | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const loadComponent = (component: ComponentName) => {
     setCurrentView(component);
-    setIsOpen(false);
+    setMobileMenuOpen(false);
   };
 
   const renderComponent = () => {
@@ -30,47 +30,39 @@ const MainPage = () => {
     {
       name: 'Registro de Pensamientos',
       component: 'RegistroPensamientos' as ComponentName,
-      icon: <BookText size={20} />
+      icon: <BookText className="w-5 h-5" />
     },
     {
       name: 'Registro de Dimensiones',
       component: 'RegistroDimensiones' as ComponentName,
-      icon: <Box size={20} />
+      icon: <Box className="w-5 h-5" />
     },
     {
       name: 'Registro de Eventos',
       component: 'RegistroEventos' as ComponentName,
-      icon: <Calendar size={20} />
+      icon: <Calendar className="w-5 h-5" />
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Fijo */}
-      <header className="fixed top-0 left-0 right-0 bg-blue-600 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <h1 className="text-white text-xl font-semibold truncate">
+      {/* Header */}
+      <nav className="fixed top-0 left-0 right-0 z-50">
+        <div className="bg-blue-600 px-4 sm:px-6">
+          <div className="flex h-16 items-center justify-between">
+            {/* Logo/Title */}
+            <h1 className="text-white text-xl font-semibold">
               Registro Psicológico
             </h1>
-            <Button
-              isIconOnly
-              variant="light"
-              aria-label="Menu"
-              className="text-white lg:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
 
-            {/* Menú horizontal para pantallas grandes */}
-            <nav className="hidden lg:flex items-center space-x-4">
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex lg:gap-x-6">
               {menuItems.map((item) => (
                 <Button
                   key={item.component}
                   variant="light"
-                  className={`text-white hover:bg-blue-700 ${
-                    currentView === item.component ? 'bg-blue-700' : ''
+                  className={`text-white ${
+                    currentView === item.component ? 'bg-blue-700' : 'hover:bg-blue-500'
                   }`}
                   onClick={() => loadComponent(item.component)}
                   startContent={item.icon}
@@ -78,61 +70,76 @@ const MainPage = () => {
                   {item.name}
                 </Button>
               ))}
-            </nav>
-          </div>
-        </div>
-      </header>
+            </div>
 
-      {/* Menú móvil */}
-      <div
-        className={`
-          fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50
-          lg:hidden
-          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-        `}
-      >
-        <div className="flex flex-col h-full">
-          <div className="flex justify-end p-4">
-            <Button
-              isIconOnly
-              variant="light"
-              onClick={() => setIsOpen(false)}
-            >
-              <X size={24} />
-            </Button>
-          </div>
-          
-          <Divider />
-          
-          <nav className="flex-1 px-4 py-2 space-y-2">
-            {menuItems.map((item) => (
+            {/* Mobile menu button */}
+            <div className="lg:hidden">
               <Button
-                key={item.component}
+                isIconOnly
                 variant="light"
-                className={`w-full justify-start ${
-                  currentView === item.component ? 'bg-blue-100' : ''
-                }`}
-                onClick={() => loadComponent(item.component)}
-                startContent={item.icon}
+                className="text-white"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-expanded="false"
               >
-                {item.name}
+                <span className="sr-only">Abrir menú principal</span>
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <Menu className="h-6 w-6" aria-hidden="true" />
+                )}
               </Button>
-            ))}
-          </nav>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Overlay para móvil */}
-      {isOpen && (
+        {/* Mobile menu */}
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+          className={`lg:hidden ${
+            mobileMenuOpen ? 'fixed inset-0 z-50' : 'hidden'
+          }`}
+        >
+          {/* Background overlay */}
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Menu panel */}
+          <div className="fixed inset-y-0 right-0 w-64 bg-white overflow-y-auto">
+            <div className="flex items-center justify-end px-4 py-4">
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <X className="h-6 w-6" aria-hidden="true" />
+              </Button>
+            </div>
 
-      {/* Contenido principal */}
-      <main className="pt-20 px-4 pb-6 max-w-7xl mx-auto">
-        {renderComponent()}
+            <div className="px-2 py-2">
+              {menuItems.map((item) => (
+                <Button
+                  key={item.component}
+                  variant="light"
+                  className={`w-full justify-start mb-2 ${
+                    currentView === item.component ? 'bg-blue-100' : ''
+                  }`}
+                  onClick={() => loadComponent(item.component)}
+                  startContent={item.icon}
+                >
+                  {item.name}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="pt-20 px-4 pb-6">
+        <div className="mx-auto max-w-7xl">
+          {renderComponent()}
+        </div>
       </main>
     </div>
   );
