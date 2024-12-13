@@ -31,7 +31,7 @@ dist/
 
 # Backup files
 *-back.*
-*back01.*
+*back*
 *_updated.*
 *.backup
 *copy.*
