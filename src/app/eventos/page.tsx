@@ -502,10 +502,7 @@ const loadEventos = useCallback(async () => {
         setIsModalOpen(open);
         if (!open) setCurrentEvento(null);
       }}
-      size={{
-        sm: "full", // En móviles ocupará toda la pantalla
-        md: "3xl"   // En tablets y desktop será más grande
-      }}
+     size="3xl"
       placement="center"
       scrollBehavior="inside"
       className="sm:mx-4 mx-2" // Agregar margen en móviles
