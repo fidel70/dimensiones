@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Button } from "@nextui-org/react";
-import { Menu, X, BookText, Box, Calendar } from "lucide-react";    
+import { Menu, X, BookText, Box, Calendar } from "lucide-react";
 
 type ComponentName = 'RegistroPensamientos' | 'RegistroDimensiones' | 'RegistroEventos';
 
@@ -18,21 +18,22 @@ const MainPage = () => {
   };
 
   const renderComponent = () => {
-  if (!currentView) return null;
+    if (!currentView) return null;
 
-  console.log('Intentando cargar:', currentView); // Para debugging
+    console.log('Intentando cargar:', currentView); // Para debugging
+    console.log('Rendering component:', currentView); // Para debugging
 
-  const pathMap = {
-    'RegistroPensamientos': 'pensamientos',
-    'RegistroDimensiones': 'dimensiones',
-    'RegistroEventos': 'eventos'
-  };
+    const pathMap = {
+      'RegistroPensamientos': 'pensamientos',
+      'RegistroDimensiones': 'dimensiones',
+      'RegistroEventos': 'eventos'
+    };
 
-  const Component = dynamic(() => import(`./${pathMap[currentView]}/page`), {
-    loading: () => <p className="text-center mt-4 text-black">Cargando componente...</p>
-  });
+    const Component = dynamic(() => import(`./${pathMap[currentView]}/page`), {
+      loading: () => <p className="text-center mt-4 text-black">Cargando componente...</p>
+    });
 
-  return <Component />;
+    return <Component />;
   };
 
   const menuItems = [
