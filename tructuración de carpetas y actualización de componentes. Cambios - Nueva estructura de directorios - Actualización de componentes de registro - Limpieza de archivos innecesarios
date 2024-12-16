@@ -1,0 +1,322 @@
+[1mdiff --git a/.next/app-build-manifest.json b/.next/app-build-manifest.json[m
+[1mindex fa81859..e43b462 100644[m
+[1m--- a/.next/app-build-manifest.json[m
+[1m+++ b/.next/app-build-manifest.json[m
+[36m@@ -1,15 +1,15 @@[m
+ {[m
+   "pages": {[m
+[31m-    "/layout": [[m
+[32m+[m[32m    "/page": [[m
+       "static/chunks/webpack.js",[m
+       "static/chunks/main-app.js",[m
+[31m-      "static/css/app/layout.css",[m
+[31m-      "static/chunks/app/layout.js"[m
+[32m+[m[32m      "static/chunks/app/page.js"[m
+     ],[m
+[31m-    "/page": [[m
+[32m+[m[32m    "/layout": [[m
+       "static/chunks/webpack.js",[m
+       "static/chunks/main-app.js",[m
+[31m-      "static/chunks/app/page.js"[m
+[32m+[m[32m      "static/css/app/layout.css",[m
+[32m+[m[32m      "static/chunks/app/layout.js"[m
+     ][m
+   }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/build-manifest.json b/.next/build-manifest.json[m
+[1mindex 623fe7b..018cb67 100644[m
+[1m--- a/.next/build-manifest.json[m
+[1m+++ b/.next/build-manifest.json[m
+[36m@@ -12,7 +12,6 @@[m
+     "static/chunks/webpack.js",[m
+     "static/chunks/main-app.js"[m
+   ],[m
+[31m-  "rootMainFilesTree": {},[m
+   "pages": {[m
+     "/_app": [][m
+   },[m
+[1mdiff --git a/.next/cache/webpack/client-development-fallback/0.pack.gz b/.next/cache/webpack/client-development-fallback/0.pack.gz[m
+[1mindex aa407e6..9e4ce28 100644[m
+Binary files a/.next/cache/webpack/client-development-fallback/0.pack.gz and b/.next/cache/webpack/client-development-fallback/0.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development-fallback/1.pack.gz b/.next/cache/webpack/client-development-fallback/1.pack.gz[m
+[1mindex 26f14b2..400280e 100644[m
+Binary files a/.next/cache/webpack/client-development-fallback/1.pack.gz and b/.next/cache/webpack/client-development-fallback/1.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development-fallback/index.pack.gz b/.next/cache/webpack/client-development-fallback/index.pack.gz[m
+[1mindex dd1421a..8f0d8d4 100644[m
+Binary files a/.next/cache/webpack/client-development-fallback/index.pack.gz and b/.next/cache/webpack/client-development-fallback/index.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development-fallback/index.pack.gz.old b/.next/cache/webpack/client-development-fallback/index.pack.gz.old[m
+[1mindex 827150f..9f01d4c 100644[m
+Binary files a/.next/cache/webpack/client-development-fallback/index.pack.gz.old and b/.next/cache/webpack/client-development-fallback/index.pack.gz.old differ
+[1mdiff --git a/.next/cache/webpack/client-development/0.pack.gz b/.next/cache/webpack/client-development/0.pack.gz[m
+[1mindex 41aecd3..9127235 100644[m
+Binary files a/.next/cache/webpack/client-development/0.pack.gz and b/.next/cache/webpack/client-development/0.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/1.pack.gz b/.next/cache/webpack/client-development/1.pack.gz[m
+[1mindex 9ce234b..519314f 100644[m
+Binary files a/.next/cache/webpack/client-development/1.pack.gz and b/.next/cache/webpack/client-development/1.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/10.pack.gz b/.next/cache/webpack/client-development/10.pack.gz[m
+[1mindex 9dd977d..be3cc0f 100644[m
+Binary files a/.next/cache/webpack/client-development/10.pack.gz and b/.next/cache/webpack/client-development/10.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/2.pack.gz b/.next/cache/webpack/client-development/2.pack.gz[m
+[1mindex 12b709c..2d49788 100644[m
+Binary files a/.next/cache/webpack/client-development/2.pack.gz and b/.next/cache/webpack/client-development/2.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/3.pack.gz b/.next/cache/webpack/client-development/3.pack.gz[m
+[1mindex bf4a172..cd23e66 100644[m
+Binary files a/.next/cache/webpack/client-development/3.pack.gz and b/.next/cache/webpack/client-development/3.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/4.pack.gz b/.next/cache/webpack/client-development/4.pack.gz[m
+[1mindex 3ff2c6b..d1f70f8 100644[m
+Binary files a/.next/cache/webpack/client-development/4.pack.gz and b/.next/cache/webpack/client-development/4.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/5.pack.gz b/.next/cache/webpack/client-development/5.pack.gz[m
+[1mindex e8f4fc5..fb779c3 100644[m
+Binary files a/.next/cache/webpack/client-development/5.pack.gz and b/.next/cache/webpack/client-development/5.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/6.pack.gz b/.next/cache/webpack/client-development/6.pack.gz[m
+[1mindex 22de46a..13d0d42 100644[m
+Binary files a/.next/cache/webpack/client-development/6.pack.gz and b/.next/cache/webpack/client-development/6.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/7.pack.gz b/.next/cache/webpack/client-development/7.pack.gz[m
+[1mindex 32cae75..72b8bef 100644[m
+Binary files a/.next/cache/webpack/client-development/7.pack.gz and b/.next/cache/webpack/client-development/7.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/8.pack.gz b/.next/cache/webpack/client-development/8.pack.gz[m
+[1mindex 7a87422..ad515f6 100644[m
+Binary files a/.next/cache/webpack/client-development/8.pack.gz and b/.next/cache/webpack/client-development/8.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/9.pack.gz b/.next/cache/webpack/client-development/9.pack.gz[m
+[1mindex 2637267..3c1e057 100644[m
+Binary files a/.next/cache/webpack/client-development/9.pack.gz and b/.next/cache/webpack/client-development/9.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/index.pack.gz b/.next/cache/webpack/client-development/index.pack.gz[m
+[1mindex 09e776e..1d51994 100644[m
+Binary files a/.next/cache/webpack/client-development/index.pack.gz and b/.next/cache/webpack/client-development/index.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/client-development/index.pack.gz.old b/.next/cache/webpack/client-development/index.pack.gz.old[m
+[1mindex e12221a..7d59fbb 100644[m
+Binary files a/.next/cache/webpack/client-development/index.pack.gz.old and b/.next/cache/webpack/client-development/index.pack.gz.old differ
+[1mdiff --git a/.next/cache/webpack/edge-server-development/0.pack.gz b/.next/cache/webpack/edge-server-development/0.pack.gz[m
+[1mindex 2c21428..07a1c21 100644[m
+Binary files a/.next/cache/webpack/edge-server-development/0.pack.gz and b/.next/cache/webpack/edge-server-development/0.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/edge-server-development/1.pack.gz b/.next/cache/webpack/edge-server-development/1.pack.gz[m
+[1mindex e651207..ab1124a 100644[m
+Binary files a/.next/cache/webpack/edge-server-development/1.pack.gz and b/.next/cache/webpack/edge-server-development/1.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/edge-server-development/index.pack.gz b/.next/cache/webpack/edge-server-development/index.pack.gz[m
+[1mindex 0fc03bc..80cdbf9 100644[m
+Binary files a/.next/cache/webpack/edge-server-development/index.pack.gz and b/.next/cache/webpack/edge-server-development/index.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/edge-server-development/index.pack.gz.old b/.next/cache/webpack/edge-server-development/index.pack.gz.old[m
+[1mindex a47fe00..9ade788 100644[m
+Binary files a/.next/cache/webpack/edge-server-development/index.pack.gz.old and b/.next/cache/webpack/edge-server-development/index.pack.gz.old differ
+[1mdiff --git a/.next/cache/webpack/server-development/0.pack.gz b/.next/cache/webpack/server-development/0.pack.gz[m
+[1mindex 353f062..f33bf88 100644[m
+Binary files a/.next/cache/webpack/server-development/0.pack.gz and b/.next/cache/webpack/server-development/0.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/1.pack.gz b/.next/cache/webpack/server-development/1.pack.gz[m
+[1mindex 1d303ed..d7148d1 100644[m
+Binary files a/.next/cache/webpack/server-development/1.pack.gz and b/.next/cache/webpack/server-development/1.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/10.pack.gz b/.next/cache/webpack/server-development/10.pack.gz[m
+[1mindex 23d0613..59c3800 100644[m
+Binary files a/.next/cache/webpack/server-development/10.pack.gz and b/.next/cache/webpack/server-development/10.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/2.pack.gz b/.next/cache/webpack/server-development/2.pack.gz[m
+[1mindex e010c8b..e61cbd4 100644[m
+Binary files a/.next/cache/webpack/server-development/2.pack.gz and b/.next/cache/webpack/server-development/2.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/3.pack.gz b/.next/cache/webpack/server-development/3.pack.gz[m
+[1mindex 558639d..a1edf6e 100644[m
+Binary files a/.next/cache/webpack/server-development/3.pack.gz and b/.next/cache/webpack/server-development/3.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/4.pack.gz b/.next/cache/webpack/server-development/4.pack.gz[m
+[1mindex b65e3c2..0b767c5 100644[m
+Binary files a/.next/cache/webpack/server-development/4.pack.gz and b/.next/cache/webpack/server-development/4.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/5.pack.gz b/.next/cache/webpack/server-development/5.pack.gz[m
+[1mindex 8d85e12..8a901ae 100644[m
+Binary files a/.next/cache/webpack/server-development/5.pack.gz and b/.next/cache/webpack/server-development/5.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/6.pack.gz b/.next/cache/webpack/server-development/6.pack.gz[m
+[1mindex 4c791ec..c671b1a 100644[m
+Binary files a/.next/cache/webpack/server-development/6.pack.gz and b/.next/cache/webpack/server-development/6.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/7.pack.gz b/.next/cache/webpack/server-development/7.pack.gz[m
+[1mindex d73ccad..283a241 100644[m
+Binary files a/.next/cache/webpack/server-development/7.pack.gz and b/.next/cache/webpack/server-development/7.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/8.pack.gz b/.next/cache/webpack/server-development/8.pack.gz[m
+[1mindex b25fbcf..339063a 100644[m
+Binary files a/.next/cache/webpack/server-development/8.pack.gz and b/.next/cache/webpack/server-development/8.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/9.pack.gz b/.next/cache/webpack/server-development/9.pack.gz[m
+[1mindex b013a34..06a5a4a 100644[m
+Binary files a/.next/cache/webpack/server-development/9.pack.gz and b/.next/cache/webpack/server-development/9.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/index.pack.gz b/.next/cache/webpack/server-development/index.pack.gz[m
+[1mindex 5fd52df..b8d9981 100644[m
+Binary files a/.next/cache/webpack/server-development/index.pack.gz and b/.next/cache/webpack/server-development/index.pack.gz differ
+[1mdiff --git a/.next/cache/webpack/server-development/index.pack.gz.old b/.next/cache/webpack/server-development/index.pack.gz.old[m
+[1mindex b460d78..01c6660 100644[m
+Binary files a/.next/cache/webpack/server-development/index.pack.gz.old and b/.next/cache/webpack/server-development/index.pack.gz.old differ
+[1mdiff --git a/.next/react-loadable-manifest.json b/.next/react-loadable-manifest.json[m
+[1mindex 353cc0d..9e26dfe 100644[m
+[1m--- a/.next/react-loadable-manifest.json[m
+[1m+++ b/.next/react-loadable-manifest.json[m
+[36m@@ -1,68 +1 @@[m
+[31m-{[m
+[31m-  "..\\node_modules\\@nextui-org\\accordion\\dist\\chunk-3XWHXVUH.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\accordion\\dist\\chunk-3XWHXVUH.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\calendar\\dist\\chunk-IXIWB64E.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\calendar\\dist\\chunk-IXIWB64E.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\modal\\dist\\chunk-RE5G2YMK.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\modal\\dist\\chunk-RE5G2YMK.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [[m
+[31m-      "static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js"[m
+[31m-    ][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\navbar\\dist\\chunk-O74VCX62.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\navbar\\dist\\chunk-O74VCX62.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\navbar\\dist\\chunk-XA766R6X.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\navbar\\dist\\chunk-XA766R6X.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\popover\\dist\\chunk-5KWE7IBM.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\popover\\dist\\chunk-5KWE7IBM.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\popover\\dist\\chunk-HGK6TYD4.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\popover\\dist\\chunk-HGK6TYD4.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [[m
+[31m-      "static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js"[m
+[31m-    ][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\ripple\\dist\\chunk-MRKSP4U5.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\ripple\\dist\\chunk-MRKSP4U5.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [[m
+[31m-      "static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js"[m
+[31m-    ][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@nextui-org\\tooltip\\dist\\chunk-VNAVCAK6.mjs -> @nextui-org/dom-animation": {[m
+[31m-    "id": "..\\node_modules\\@nextui-org\\tooltip\\dist\\chunk-VNAVCAK6.mjs -> @nextui-org/dom-animation",[m
+[31m-    "files": [[m
+[31m-      "static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js"[m
+[31m-    ][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@supabase\\auth-js\\dist\\module\\lib\\helpers.js -> @supabase/node-fetch": {[m
+[31m-    "id": "..\\node_modules\\@supabase\\auth-js\\dist\\module\\lib\\helpers.js -> @supabase/node-fetch",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@supabase\\functions-js\\dist\\module\\helper.js -> @supabase/node-fetch": {[m
+[31m-    "id": "..\\node_modules\\@supabase\\functions-js\\dist\\module\\helper.js -> @supabase/node-fetch",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@supabase\\realtime-js\\dist\\module\\RealtimeClient.js -> @supabase/node-fetch": {[m
+[31m-    "id": "..\\node_modules\\@supabase\\realtime-js\\dist\\module\\RealtimeClient.js -> @supabase/node-fetch",[m
+[31m-    "files": [][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@supabase\\realtime-js\\dist\\module\\RealtimeClient.js -> ws": {[m
+[31m-    "id": "..\\node_modules\\@supabase\\realtime-js\\dist\\module\\RealtimeClient.js -> ws",[m
+[31m-    "files": [[m
+[31m-      "static/chunks/_app-pages-browser_node_modules_ws_browser_js.js"[m
+[31m-    ][m
+[31m-  },[m
+[31m-  "..\\node_modules\\@supabase\\storage-js\\dist\\module\\lib\\helpers.js -> @supabase/node-fetch": {[m
+[31m-    "id": "..\\node_modules\\@supabase\\storage-js\\dist\\module\\lib\\helpers.js -> @supabase/node-fetch",[m
+[31m-    "files": [][m
+[31m-  }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m{}[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/server/interception-route-rewrite-manifest.js b/.next/server/interception-route-rewrite-manifest.js[m
+[1mdeleted file mode 100644[m
+[1mindex 82d3ab1..0000000[m
+[1m--- a/.next/server/interception-route-rewrite-manifest.js[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-self.__INTERCEPTION_ROUTE_REWRITE_MANIFEST="[]"[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/server/middleware-build-manifest.js b/.next/server/middleware-build-manifest.js[m
+[1mindex 6dce15d..c7ad621 100644[m
+[1m--- a/.next/server/middleware-build-manifest.js[m
+[1m+++ b/.next/server/middleware-build-manifest.js[m
+[36m@@ -1,22 +1 @@[m
+[31m-self.__BUILD_MANIFEST = {[m
+[31m-  "polyfillFiles": [[m
+[31m-    "static/chunks/polyfills.js"[m
+[31m-  ],[m
+[31m-  "devFiles": [],[m
+[31m-  "ampDevFiles": [],[m
+[31m-  "lowPriorityFiles": [],[m
+[31m-  "rootMainFiles": [[m
+[31m-    "static/chunks/webpack.js",[m
+[31m-    "static/chunks/main-app.js"[m
+[31m-  ],[m
+[31m-  "rootMainFilesTree": {},[m
+[31m-  "pages": {[m
+[31m-    "/_app": [][m
+[31m-  },[m
+[31m-  "ampFirstPages": [][m
+[31m-};[m
+[31m-self.__BUILD_MANIFEST.lowPriorityFiles = [[m
+[31m-"/static/" + process.env.__NEXT_BUILD_ID + "/_buildManifest.js",[m
+[31m-,"/static/" + process.env.__NEXT_BUILD_ID + "/_ssgManifest.js",[m
+[31m-[m
+[31m-];[m
+\ No newline at end of file[m
+[32m+[m[32mself.__BUILD_MANIFEST={"polyfillFiles":["static/chunks/polyfills.js"],"devFiles":[],"ampDevFiles":[],"lowPriorityFiles":["static/development/_buildManifest.js","static/development/_ssgManifest.js"],"rootMainFiles":["static/chunks/webpack.js","static/chunks/main-app.js"],"pages":{"/_app":[]},"ampFirstPages":[]}[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/server/middleware-manifest.json b/.next/server/middleware-manifest.json[m
+[1mindex f603fd3..d91ac31 100644[m
+[1m--- a/.next/server/middleware-manifest.json[m
+[1m+++ b/.next/server/middleware-manifest.json[m
+[36m@@ -1,5 +1,7 @@[m
+ {[m
+[31m-  "version": 3,[m
+[32m+[m[32m  "sortedMiddleware": [[m
+[32m+[m[32m    "/"[m
+[32m+[m[32m  ],[m
+   "middleware": {[m
+     "/": {[m
+       "files": [[m
+[36m@@ -15,15 +17,9 @@[m
+         }[m
+       ],[m
+       "wasm": [],[m
+[31m-      "assets": [],[m
+[31m-      "env": {[m
+[31m-        "__NEXT_BUILD_ID": "development",[m
+[31m-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "8FviXaBcDM01amXdrdO45Y92rrV78K3GYmSrOk5Ewpc="[m
+[31m-      }[m
+[32m+[m[32m      "assets": [][m
+     }[m
+   },[m
+   "functions": {},[m
+[31m-  "sortedMiddleware": [[m
+[31m-    "/"[m
+[31m-  ][m
+[32m+[m[32m  "version": 2[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/server/middleware-react-loadable-manifest.js b/.next/server/middleware-react-loadable-manifest.js[m
+[1mindex 8211604..ca34f09 100644[m
+[1m--- a/.next/server/middleware-react-loadable-manifest.js[m
+[1m+++ b/.next/server/middleware-react-loadable-manifest.js[m
+[36m@@ -1 +1 @@[m
+[31m-self.__REACT_LOADABLE_MANIFEST="{\"..\\\\node_modules\\\\@nextui-org\\\\accordion\\\\dist\\\\chunk-3XWHXVUH.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\accordion\\\\dist\\\\chunk-3XWHXVUH.mjs -> @nextui-org/dom-animation\",\"files\":[]},\"..\\\\node_modules\\\\@nextui-org\\\\calendar\\\\dist\\\\chunk-IXIWB64E.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\calendar\\\\dist\\\\chunk-IXIWB64E.mjs -> @nextui-org/dom-animation\",\"files\":[]},\"..\\\\node_modules\\\\@nextui-org\\\\modal\\\\dist\\\\chunk-RE5G2YMK.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\modal\\\\dist\\\\chunk-RE5G2YMK.mjs -> @nextui-org/dom-animation\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js\"]},\"..\\\\node_modules\\\\@nextui-org\\\\navbar\\\\dist\\\\chunk-O74VCX62.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\navbar\\\\dist\\\\chunk-O74VCX62.mjs -> @nextui-org/dom-animation\",\"files\":[]},\"..\\\\node_modules\\\\@nextui-org\\\\navbar\\\\dist\\\\chunk-XA766R6X.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\navbar\\\\dist\\\\chunk-XA766R6X.mjs -> @nextui-org/dom-animation\",\"files\":[]},\"..\\\\node_modules\\\\@nextui-org\\\\popover\\\\dist\\\\chunk-5KWE7IBM.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\popover\\\\dist\\\\chunk-5KWE7IBM.mjs -> @nextui-org/dom-animation\",\"files\":[]},\"..\\\\node_modules\\\\@nextui-org\\\\popover\\\\dist\\\\chunk-HGK6TYD4.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\popover\\\\dist\\\\chunk-HGK6TYD4.mjs -> @nextui-org/dom-animation\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js\"]},\"..\\\\node_modules\\\\@nextui-org\\\\ripple\\\\dist\\\\chunk-MRKSP4U5.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\ripple\\\\dist\\\\chunk-MRKSP4U5.mjs -> @nextui-org/dom-animation\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js\"]},\"..\\\\node_modules\\\\@nextui-org\\\\tooltip\\\\dist\\\\chunk-VNAVCAK6.mjs -> @nextui-org/dom-animation\":{\"id\":\"..\\\\node_modules\\\\@nextui-org\\\\tooltip\\\\dist\\\\chunk-VNAVCAK6.mjs -> @nextui-org/dom-animation\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_nextui-org_dom-animation_dist_index_mjs.js\"]},\"..\\\\node_modules\\\\@supabase\\\\auth-js\\\\dist\\\\module\\\\lib\\\\helpers.js -> @supabase/node-fetch\":{\"id\":\"..\\\\node_modules\\\\@supabase\\\\auth-js\\\\dist\\\\module\\\\lib\\\\helpers.js -> @supabase/node-fetch\",\"files\":[]},\"..\\\\node_modules\\\\@supabase\\\\functions-js\\\\dist\\\\module\\\\helper.js -> @supabase/node-fetch\":{\"id\":\"..\\\\node_modules\\\\@supabase\\\\functions-js\\\\dist\\\\module\\\\helper.js -> @supabase/node-fetch\",\"files\":[]},\"..\\\\node_modules\\\\@supabase\\\\realtime-js\\\\dist\\\\module\\\\RealtimeClient.js -> @supabase/node-fetch\":{\"id\":\"..\\\\node_modules\\\\@supabase\\\\realtime-js\\\\dist\\\\module\\\\RealtimeClient.js -> @supabase/node-fetch\",\"files\":[]},\"..\\\\node_modules\\\\@supabase\\\\realtime-js\\\\dist\\\\module\\\\RealtimeClient.js -> ws\":{\"id\":\"..\\\\node_modules\\\\@supabase\\\\realtime-js\\\\dist\\\\module\\\\RealtimeClient.js -> ws\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_ws_browser_js.js\"]},\"..\\\\node_modules\\\\@supabase\\\\storage-js\\\\dist\\\\module\\\\lib\\\\helpers.js -> @supabase/node-fetch\":{\"id\":\"..\\\\node_modules\\\\@supabase\\\\storage-js\\\\dist\\\\module\\\\lib\\\\helpers.js -> @supabase/node-fetch\",\"files\":[]}}"[m
+\ No newline at end of file[m
+[32m+[m[32mself.__REACT_LOADABLE_MANIFEST="{}"[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/server/server-reference-manifest.js b/.next/server/server-reference-manifest.js[m
+[1mindex cc0af96..7813ae2 100644[m
+[1m--- a/.next/server/server-reference-manifest.js[m
+[1m+++ b/.next/server/server-reference-manifest.js[m
+[36m@@ -1 +1 @@[m
+[31m-self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"process.env.NEXT_SERVER_ACTIONS_ENCRYPTION_KEY\"\n}"[m
+\ No newline at end of file[m
+[32m+[m[32mself.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"mePtO9FEKUbCMLlCODKj/NVmy0eByoWDRgjFpfCHaCM=\"\n}"[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/server/server-reference-manifest.json b/.next/server/server-reference-manifest.json[m
+[1mindex 4e0ffd3..20bc88c 100644[m
+[1m--- a/.next/server/server-reference-manifest.json[m
+[1m+++ b/.next/server/server-reference-manifest.json[m
+[36m@@ -1,5 +1,5 @@[m
+ {[m
+   "node": {},[m
+   "edge": {},[m
+[31m-  "encryptionKey": "8FviXaBcDM01amXdrdO45Y92rrV78K3GYmSrOk5Ewpc="[m
+[32m+[m[32m  "encryptionKey": "mePtO9FEKUbCMLlCODKj/NVmy0eByoWDRgjFpfCHaCM="[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/.next/static/chunks/polyfills.js b/.next/static/chunks/polyfills.js[m
+[1mindex ab422b9..3858b79 100644[m
+[1m--- a/.next/static/chunks/polyfills.js[m
+[1m+++ b/.next/static/chunks/polyfills.js[m
+[36m@@ -1 +1 @@[m
+[31m-!function(){var t="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function e(t){var e={exports:{}};return t(e,e.exports),e.exports}var r,n,o=function(t){return t&&t.Math===Math&&t},i=o("object"==typeof globalThis&&globalThis)||o("object"==typ

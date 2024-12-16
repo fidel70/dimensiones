@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Button } from "@nextui-org/react";
-import { Menu, X, BookText, Box, Calendar } from "lucide-react";
+import { Menu, X, BookText, Box, Calendar } from "lucide-react";    
 
 type ComponentName = 'RegistroPensamientos' | 'RegistroDimensiones' | 'RegistroEventos';
 
@@ -12,18 +12,27 @@ const MainPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const loadComponent = (component: ComponentName) => {
+    console.log('Loading component:', component); // Para debugging
     setCurrentView(component);
     setMobileMenuOpen(false);
   };
 
   const renderComponent = () => {
-    if (!currentView) return null;
+  if (!currentView) return null;
 
-    const Component = dynamic(() => import(`./${currentView}`), {
-      loading: () => <p className="text-center mt-4 text-black">Cargando componente...</p>
-    });
+  console.log('Intentando cargar:', currentView); // Para debugging
 
-    return <Component />;
+  const pathMap = {
+    'RegistroPensamientos': 'pensamientos',
+    'RegistroDimensiones': 'dimensiones',
+    'RegistroEventos': 'eventos'
+  };
+
+  const Component = dynamic(() => import(`./${pathMap[currentView]}/page`), {
+    loading: () => <p className="text-center mt-4 text-black">Cargando componente...</p>
+  });
+
+  return <Component />;
   };
 
   const menuItems = [
@@ -43,6 +52,11 @@ const MainPage = () => {
       icon: <Calendar className="w-5 h-5" />
     }
   ];
+
+  const handleMenuItemClick = (component: ComponentName) => {
+    console.log('Menu item clicked:', component); // Para debugging
+    loadComponent(component);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -64,7 +78,7 @@ const MainPage = () => {
                   className={`text-white ${
                     currentView === item.component ? 'bg-blue-700' : 'hover:bg-blue-500'
                   }`}
-                  onClick={() => loadComponent(item.component)}
+                  onClick={() => handleMenuItemClick(item.component)}
                   startContent={item.icon}
                 >
                   {item.name}
@@ -91,7 +105,10 @@ const MainPage = () => {
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setMobileMenuOpen(false)} />
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40" 
+          onClick={() => setMobileMenuOpen(false)}
+        />
       )}
 
       {/* Mobile menu panel */}
@@ -112,17 +129,18 @@ const MainPage = () => {
 
         <nav className="px-4 py-2 space-y-2">
           {menuItems.map((item) => (
-            <Button
+            <button
               key={item.component}
-              variant="light"
-              className={`w-full justify-start mb-2 ${
-                currentView === item.component ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
+              className={`w-full flex items-center px-4 py-2 text-sm font-medium rounded-md ${
+                currentView === item.component 
+                  ? 'bg-blue-100 text-blue-600' 
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               }`}
-              onClick={() => loadComponent(item.component)}
-              startContent={item.icon}
+              onClick={() => handleMenuItemClick(item.component)}
             >
+              <span className="mr-3">{item.icon}</span>
               {item.name}
-            </Button>
+            </button>
           ))}
         </nav>
       </div>
